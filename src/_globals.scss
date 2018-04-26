@@ -1,0 +1,5 @@
+@import 'react-md/src/scss/react-md';
+
+// Any variable overrides. The following just changes the default theme to use teal and purple.
+$md-primary-color: $md-brown-50;
+$md-secondary-color: $md-blue-a-100;
