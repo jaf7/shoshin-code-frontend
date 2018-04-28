@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 // import vm from 'vm.js'
 // const Vm = require('vm.js') 
@@ -32,33 +33,53 @@ class Repl extends Component {
     }
     interpreter.setProperty( scope, 'alert', interpreter.createNativeFunction(alertWrapper) )
 
+    // none of the below are the source of 'console is undefined' so it must be what's passed in
+    // but if you try log('hello') you get 'log is undefined' also
     // interpreter.nativeToPseudo({
     //   log(...args) { console.log(...args) }
     // })
-
     // var consoleWrapper = function(text) {
     //   return console.log(arguments.length ? text : '')
     // }
-    // interpreter.setProperty( scope, 'console.log', interpreter.createNativeFunction(consoleWrapper) )
+    // interpreter.setProperty( scope, 'log', interpreter.createNativeFunction(consoleWrapper) )
   }
 
-  handleRun = (content, initFn) => {
-    if ( content.includes('console.log') ) {
-      let arg = content.match(/\(([^)]+)\)/)
-      console.log(`ARG: ${arg[1]}`)
-    } else {
-      const emittedCode = content
-      const currentRun = new Interpreter(emittedCode, initFn)
+  handleRun = ( content, initFunction ) => {
+    let emittedCode = content
 
-      currentRun.run()
-      console.log(`EMITTED: ${emittedCode}`)
-      console.log(`INTERP ${currentRun.value}`)
-      return currentRun.value
+    if ( emittedCode.includes('console.log') ) {
+      let pattern = /\((.*?)\)/;
+      let arg = emittedCode.match( pattern )[0]
+      if ( typeof arg === 'string' ) {
+        console.log( `STRING ARG: ${arg}` ) // work on making this the output first
+        return arg.slice( 2, arg.length - 2 )
+      } else {
+        console.log( `NON-STRING CONSOLE ARG: ${arg[1]}` )
+        // interpret( arg, initFunction )
+      }
+    } else {
+      return interpret( emittedCode, initFunction )
+    }
+
+    function interpret( code, init ) {
+      try {
+        const currentRun = new Interpreter( code, init )
+        currentRun.run()
+        const value = currentRun.value
+        console.log( `EMITTED: ${emittedCode}` )
+        console.log( `INTERP ${value} ${typeof(value)}` )
+        return value
+      } catch (e) {
+        let errorMessage = `${e.name}: ${e.message}`
+        console.log(e.name)
+        console.log(e.message)
+        return errorMessage
+      }
     }
   }
 
   render() {
-    const output = this.handleRun(this.props.editorContent, this.initApi)
+    const output = this.handleRun(this.props.emitContent, this.initApi)
 
     return (
 
@@ -68,7 +89,8 @@ class Repl extends Component {
             {/*<div className="md-text-container">*/}
               {/*<textarea>*/}
                 {/*Interpreter*/}
-                { this.props.editorContent.includes('console.log') ? 'see console' : output.toString() }
+                {/*{ this.props.emitContent.includes('console.log') ? 'see console' : typeof(output) === 'undefined' ? 'undefined' : output.toString() }*/}
+                { typeof(output) === 'undefined' ? 'output undefined' : output.toString() }
 
 
               {/*</textarea>*/}
@@ -82,4 +104,10 @@ class Repl extends Component {
 
 }
 
-export default Repl
+const mapStateToProps = state => {
+  return {
+    emitContent: state.editor.emitContent
+  }
+}
+
+export default connect(mapStateToProps)(Repl)

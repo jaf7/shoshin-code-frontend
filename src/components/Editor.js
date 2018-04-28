@@ -1,23 +1,26 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
+import { updateEditorContent } from '../actions/actions' 
+import { emitEditorContent } from '../actions/actions'
 import uuid from 'uuid/v1'
-import brace from 'brace'
+// import brace from 'brace'
 import AceEditor from 'react-ace'
 import 'brace/mode/javascript'
 import 'brace/theme/monokai'
+import 'brace/theme/dawn'
 
 const editorId = uuid()
 
 class Editor extends Component {
-  constructor() {
-    super()
-    this.state = {
-      content: ''
-    }
-  }
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     content: ''
+  //   }
+  // }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.content !== nextState.content) {
+    if (this.props.content !== nextProps.content) {
       return false
     } else {
       return true
@@ -34,27 +37,28 @@ class Editor extends Component {
     // console.log(`e keys ${Object.keys(e)}`)
   }
 
-  emitContent = () => {
-    this.props.setContent(this.state.content)
-  }
+  // emitContent = () => {
+  //   this.props.setContent(this.state.content)
+  // }
 
   render() {
     return(
       <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} >
         <AceEditor
-          defaultValue={this.state.content}
+          defaultValue={this.props.content} // changed to redux store
           mode="javascript"
-          theme="monokai"
-          onChange={this.onChange}
+          theme="dawn"
+
+          onChange={this.props.updateContent}
           debounceChangePeriod={200}
           name={editorId}
-          editorProps={{$blockScrolling: true}}
+          editorProps={{$blockScrolling: false}}
           width="auto"
           commands={[
             {
               name: 'sendCode',
               bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
-              exec: () => { this.emitContent() }
+              exec: () => { this.props.emitContent(this.props.content) }
             }]}
         />
       </div>
@@ -62,4 +66,17 @@ class Editor extends Component {
   }
 }
 
-export default Editor
+const mapStateToProps = state => {
+  return {
+    content: state.editor.currentContent
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateContent: newValue => dispatch( updateEditorContent(newValue) ),
+    emitContent: content => dispatch( emitEditorContent(content) )
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Editor) // pass component into fn returned by connect(). connect() takes a callback.
