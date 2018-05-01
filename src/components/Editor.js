@@ -40,7 +40,7 @@ class Editor extends Component {
   // emitContent = () => {
   //   this.props.setContent(this.state.content)
   // }
-
+ 
   render() {
     return(
       <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} >

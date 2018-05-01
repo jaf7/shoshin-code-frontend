@@ -71,8 +71,8 @@ class Repl extends Component {
         return value
       } catch (e) {
         let errorMessage = `${e.name}: ${e.message}`
-        console.log(e.name)
-        console.log(e.message)
+        console.log('error name: ', e.name)
+        console.log('error message: ', e.message)
         return errorMessage
       }
     }

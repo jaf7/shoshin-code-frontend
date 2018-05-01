@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import NavigationFrame from './NavigationFrame'
 
-import logo from './logo.svg'
+// import { NavigationDrawer } from 'react-md'
+// import NavigationTabs from './components/navigation/NavigationTabs'
+// import ExerciseChooser from './components/ExerciseChooser'
+// import ExerciseContainer from './components/ExerciseContainer'
+// import UserCollection from './components/UserCollection'
 
 
-import { NavigationDrawer } from 'react-md'
-import ExerciseContainer from './components/ExerciseContainer'
-import JsonContainer from './JsonContainer'
-
-
-// const reducer = (state={count:0}, action) => {
-//   console.log('---------------')
-//   console.log('state: ', state)
-//   console.log('action: ', action)
-//   console.log('---------------')
-//   return { blah: true }
-// }
-// const store = createStore( reducer )
-// store.subscribe( () => console.log('New state: ', store.getState() ))
-// console.log('---------------')
+import { fetchExercises } from './actions/actions'
 
 class App extends Component {
+  constructor(props) {
+    super(props) 
+    this.props.getExercises()
+  }
 
   render() {
     return (
-    
-      <NavigationDrawer
-        drawerTitle=""
-        toolbarTitle="Toolbar Title"
-      >
-        <ExerciseContainer />
-      </NavigationDrawer>
-    );
+      <NavigationFrame />
+    )
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    getExercises: () => dispatch( fetchExercises() )
+  }
+}
+
+export default withRouter( connect( null, mapDispatchToProps )( App ) )
