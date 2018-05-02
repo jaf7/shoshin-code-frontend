@@ -21,7 +21,7 @@ class MainContainer extends Component {
         toolbarTitle="                       "
         toolbarChildren={<NavigationTabs/>}
         type={Drawer.DrawerTypes.PERSISTENT}
-        transitionDuration={100}
+
       >
         <Switch>
           <Route path="/exercise-chooser" component={ExerciseChooser} />

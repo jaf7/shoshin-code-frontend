@@ -34,7 +34,7 @@ class NavigationTabs extends Component {
           <Tab component={MyExercisesLink} label="My Exercises" className="nav-tab" ></Tab>
         </Tabs>
 
-    )
+    ) 
   }
 }
 

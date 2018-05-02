@@ -45,7 +45,7 @@ class Editor extends Component {
     return(
       <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} >
         <AceEditor
-          defaultValue={this.props.content} // changed to redux store
+          defaultValue="" // changed to redux store
           mode="javascript"
           theme="dawn"
 
