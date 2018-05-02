@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import NavigationFrame from './NavigationFrame'
@@ -12,7 +12,7 @@ import NavigationFrame from './NavigationFrame'
 
 import { fetchExercises } from './actions/actions'
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props) 
     this.props.getExercises()
