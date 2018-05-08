@@ -5,6 +5,8 @@ import { Button } from 'react-md'
 import MaterialIcon, {colorPallet} from 'material-icons-react'
 import * as actions from '../../actions/actions'
 
+const logoutButtonStyle = { marginRight: '2rem' }
+
 class Logout extends PureComponent {
 
   logout = () => {
@@ -17,6 +19,7 @@ class Logout extends PureComponent {
         flat
         iconEl={<MaterialIcon icon="exit_to_app" iconBefore={false} color={colorPallet.orange.A200} />}
         onClick={this.logout}
+        style={logoutButtonStyle}
       >
       Logout
       </Button>

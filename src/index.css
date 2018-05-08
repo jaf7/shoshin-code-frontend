@@ -3692,6 +3692,13 @@ section.md-dialog-content.md-dialog-content--padded {
   font-size: 1.2rem;
   font-weight: 400; }
 
+div.md-icon-separator {
+  position: absolute;
+  top: 0px; }
+
+h3.md-card-title--title.md-text--secondary {
+  font-size: 1.3rem; }
+
 .markdown {
   margin: 1rem; }
 
@@ -3708,3 +3715,11 @@ div.markdown p {
 div.markdown li {
   font-size: 1.1rem;
   list-style-type: circle; }
+
+div.markdown a {
+  color: #557280; }
+
+div.markdown a:hover {
+  text-decoration: none;
+  color: green;
+  font-size: 1.3rem; }

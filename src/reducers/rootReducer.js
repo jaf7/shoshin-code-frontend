@@ -7,7 +7,7 @@ const defaultState = {
     exerciseCollectionLoaded: false,
     editorSession: {
       loaded: false,
-      content: 'DEFAULT STATE - EMPTY EDITOR SESSION'
+      content: "\/\/ Welcome! I hope you have as much fun practicing your coding skills with\r\n\/\/ this tool as I\'m having building it! If you\'re using it to practice,\r\n\/\/ you already know that coding is an iterative process. In that spirit,\r\n\/\/ this editor-interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let] while coding here. You\'ll have to stick\r\n\/\/ with [var] - for now ... ES6 will be in the next version!\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. :( It will be!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER"
     },
     error: {
       status: false,
@@ -45,14 +45,14 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'SETTING_USER_EXERCISE_COLLECTION':
-    console.log('&&&&&&&&&SETTING COLLECTION loaded false &&&&&&&&&&&&&&&&&&&')
+    // console.log('&&&&&&&&&SETTING COLLECTION loaded false &&&&&&&&&&&&&&&&&&&')
       return { ...state,
         user: { ...state.user,
           exerciseCollectionLoaded: false
         }
       }
     case 'SET_USER_EXERCISE_COLLECTION':
-    console.log('&&&&&&&&&SET COLLECTION Loaded true &&&&&&&&&&&&&&&&&&&')
+    // console.log('&&&&&&&&&SET COLLECTION Loaded true &&&&&&&&&&&&&&&&&&&')
       return { ...state,
         user: { ...state.user,
           exerciseCollectionLoaded: true,
@@ -112,7 +112,7 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'TEARDOWN_SESSION':
-    console.log('$$$$$$$$$REDUCER TEARDOWN$$$$$$$$$$$$')
+    // console.log('$$$$$$$$$REDUCER TEARDOWN$$$$$$$$$$$$')
       return { ...state,
         exercises: { ...state.exercises,
           currentId: 'a06b3126-521a-11e8-9c2d-fa7ae01bbebc'

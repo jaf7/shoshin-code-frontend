@@ -32,7 +32,7 @@ export const getUserExerciseCollection = (userId) => dispatch => {
 
 export const removeExerciseFromCollection = ( userId, exerciseId ) => dispatch => {
   adapter.data.removeExerciseFromCollection( {userId, exerciseId} ).then(data => {
-    console.log('---------DELETED RESPONSE (ed sessions): ', data)
+    // console.log('---------DELETED RESPONSE (ed sessions): ', data)
   })
 }
 
@@ -55,12 +55,12 @@ export const saveSessionContent = ( userId, exerciseId, sessionContent ) => disp
 }
 
 export const updateEditorKey = ( key ) => dispatch => {
-  console.log('*********ACTION udpateEditorKey*************')
+  // console.log('*********ACTION udpateEditorKey*************')
   dispatch({ type: 'UPDATE_EDITOR_KEY' })
 }
 
 export const teardownSession = () => dispatch => {
-  console.log('*********ACTION teardownSession*************')
+  // console.log('*********ACTION teardownSession*************')
   dispatch({ type: 'TEARDOWN_SESSION' })
 }
 

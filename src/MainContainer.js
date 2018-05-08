@@ -50,18 +50,12 @@ class MainContainer extends Component {
   // url uses slug and appends a param ( that should be used by the editor component to toggle read-only, maybe we don't need state - props.match.params)
   // shareSession = () => this.props.shareUrl( this.props.currentSlug )
   shareSession = () => {
-    console.log('@@@@@@@@@ shareSession clicked @@@@@@@@')
-    console.log('currentSlug: ', this.props.currentSlug)
-    console.log('@@@@@@@@@ shareSession clicked @@@@@@@@')
+    // console.log('@@@@@@@@@ shareSession clicked @@@@@@@@')
+    // console.log('currentSlug: ', this.props.currentSlug)
+    // console.log('@@@@@@@@@ shareSession clicked @@@@@@@@')
   }
  
   render() {
-    console.log('////////MainContainer////////')
-    console.log('userId: ', this.props.userId)
-    console.log('exerciseId: ', this.props.exerciseId)
-    console.log('sessionContent: ', this.props.sessionContent)
-    console.log('currentContent: ', this.props.currentContent)
-    console.log('^^^^^^^^MainContainer^^^^^^^^')
     const drawerType = Drawer.DrawerTypes.PERSISTENT
     const navItemsList = [
             <ListItem

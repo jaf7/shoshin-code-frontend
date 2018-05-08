@@ -1,33 +1,38 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+let chooserActive = false
+
 class ExerciseChooserLink extends Component {
   constructor () {
     super()
-    this.state = { active: false }
+    this.state = { active: true }
   }
 
   tabClick = ( e ) => {
-    this.setState({active: !this.state.active})
+    // this.setState({active: !this.state.active})
+    !chooserActive ? e.target.parentElement.parentElement.setAttribute('aria-selected', 'true') : null
+    chooserActive = !chooserActive
+
     console.log('------------------')
     console.log('tabClick target: ', e.target)
-    console.log('state: ', this.state.active)
+    // console.log('state: ', this.state.active)
     console.log('------------------')
   }
 
   render() {
     return ( 
-      <div>
+      <div id="chooser-tab">
         {
           this.state.active ? 
-          <li id="navigation-0" role="tab" aria-controls="navigation-panel-0" aria-selected="false" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="0">
+          <li id="navigation-0" role="tab" aria-controls="navigation-panel-0" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="0">
             <Link to="/exercise-chooser" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_chooser_tab" className="override-tab-label">Exercises</div>
             </Link>
           </li>
           :
-          <li id="navigation-0" role="tab" aria-controls="navigation-panel-0" aria-selected="false" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--active nav-tab" tabIndex="0">
+          <li id="navigation-0" role="tab" aria-controls="navigation-panel-0" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--active nav-tab" tabIndex="0">
             <Link to="/exercise-chooser" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_chooser_tab" className="override-tab-label">Exercises</div>
@@ -42,11 +47,13 @@ class ExerciseChooserLink extends Component {
 class DefaultExerciseLink extends Component {
   constructor () {
     super()
-    this.state = { active: false }
+    this.state = { active: true }
   }
 
   tabClick = ( e ) => {
-    this.setState({active: !this.state.active})
+    // this.setState({active: !this.state.active})
+    chooserActive ? e.target.parentElement.parentElement.setAttribute('aria-selected', 'true') : null
+    chooserActive = !chooserActive
     console.log('------------------') 
     console.log('tabClick target: ', e.target)
     console.log('state: ', this.state.active)
@@ -58,14 +65,14 @@ class DefaultExerciseLink extends Component {
       <div>
         {
           this.state.active ? 
-          <li id="navigation-1" role="tab" aria-controls="navigation-panel-1" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="1">
+          <li id="navigation-1" role="tab" aria-controls="navigation-panel-1" aria-selected="false" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="1">
             <Link to="/default-exercise" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_current_tab" className="override-tab-label">Code It</div>
             </Link>
           </li>
           :
-          <li id="navigation-1" role="tab" aria-controls="navigation-panel-1" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--active nav-tab" tabIndex="1">
+          <li id="navigation-1" role="tab" aria-controls="navigation-panel-1" aria-selected="false" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--active nav-tab" tabIndex="1">
             <Link to="/default-exercise" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_current_tab" className="override-tab-label">Code It</div>
@@ -84,7 +91,7 @@ class MyExercisesLink extends Component {
   }
 
   tabClick = ( e ) => {
-    this.setState({active: !this.state.active})
+    this.state.active === false ? this.setState({active: !this.state.active}) : null
     console.log('------------------')
     console.log('tabClick target: ', e.target)
     console.log('state: ', this.state.active)
@@ -96,7 +103,7 @@ class MyExercisesLink extends Component {
       <div>
         {
           this.state.active ? 
-          <li id="navigation-2" role="tab" aria-controls="navigation-panel-2" aria-selected="false" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="2">
+          <li id="navigation-2" role="tab" aria-controls="navigation-panel-2" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="2">
             <Link to="/my-exercises" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_my_tab" className="override-tab-label">My Exercises</div>

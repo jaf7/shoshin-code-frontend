@@ -10,17 +10,12 @@ import MaterialIcon, {colorPallet} from 'material-icons-react'
 
 const cardStyle = { minWidth: 200, alignItems: 'center' }
 const buttonDivStyle = { padding: '.4rem' }
-const codeItButtonStyle = { margin: '4px 2px 4px 4px' }
-const addToButtonStyle = { margin: '4px 4px 4px 2px'}
+const codeItButtonStyle = { width: '100%', display: 'flex', justifyContent: 'center' }
+const addToButtonStyle = { width: '100%', display: 'flex', justifyContent: 'center' }
 
 class ExerciseCard extends Component {
   
   loadExercise = () => {
-      console.log('%%%%%%%%%%loadExercise fired%%%%%%%%%%%%%')
-      // console.log('props.history: ', this.props.history)
-      // if ( this.props.loggedIn ) {
-      //   this.props.getSessionContent(this.props.userId, this.props.exerciseId)
-      // }
       this.props.setExerciseId(this.props.exercise.id)
       this.props.setExerciseSlug(this.props.exercise.slug)
       this.props.history.replace(`/exercise/${this.props.exercise.slug}`)
@@ -28,18 +23,17 @@ class ExerciseCard extends Component {
   }
 
   render() {
-    return(
+    return( 
 
       <Card style={cardStyle} className="md-block-centered">
         <CardTitle title={this.props.exercise.name} subtitle={this.props.exercise.tags[0]}/>
         <CardText>
           <p>
-            { this.props.exercise.description.substring(0, 127) + ' ...' }
+            { this.props.exercise.description.substring(0, 175) + ' ...' }
           </p>
         </CardText>
         <div className="buttons_group" style={buttonDivStyle} >
           <Button onClick={this.loadExercise} raised secondary iconEl={<MaterialIcon icon="code" color={colorPallet.blueGrey._500}/>} style={codeItButtonStyle} >Code It!</Button>
-          <Button raised primary iconEl={<MaterialIcon icon="bookmark" color={colorPallet.orange.A200} />} style={addToButtonStyle} >Save</Button> 
         </div>
       </Card>
 
@@ -50,9 +44,6 @@ class ExerciseCard extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    // currentContent: state.editor.currentContent,
-    // sessionLoaded: state.user.editorSession.loaded,
-    // sessionContent: state.user.editorSession.content,
     loggedIn: state.user.loggedIn,
     userId: state.user.id,
     exercise: ownProps.exercise,

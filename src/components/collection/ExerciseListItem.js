@@ -15,16 +15,11 @@ class ExerciseListItem extends Component {
 
   componentWillReceiveProps( nextProps ) {
     if ( this.props.exerciseCollection !== nextProps.exerciseCollection ) {
-      console.log('!!!!!!!!exerciseCollection!!!!!!!!')
-      console.log('this', this.props.exerciseCollection)
-      console.log('next', nextProps.exerciseCollection)
-      console.log('!!!!!!!!exerciseCollection!!!!!!!!')
     }
   }
 
   loadExercise = () => {
     if ( this.props.exercise.slug ) {
-      console.log('%%%%%%%%%%loadExercise fired%%%%%%%%%%%%%')
       this.props.setExerciseId(this.props.exercise.id)
       this.props.setExerciseSlug(this.props.exercise.slug)
       this.props.getSessionContent(this.props.userId, this.props.exercise.id)

@@ -51,7 +51,7 @@ const retrieveSessionContent = data => {
 }
 
 const updateSessionContent = data => {
-  console.log('************updateSessionContent***************')
+  // console.log('************updateSessionContent***************')
   // console.log('udpate data: ', data)
   return fetch(`${API_ROOT}/current_session`, {
     method: 'PATCH',

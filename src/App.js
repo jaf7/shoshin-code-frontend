@@ -18,9 +18,6 @@ class App extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('////////App willReceiveProps////////')
-    console.log('userId: ', this.props.userId)
-    console.log('^^^^^^^^App willReceiveProps^^^^^^^^')
     this.props.userId !== nextProps.userId ? this.props.getExerciseCollection( nextProps.userId ) : null
   }
 
