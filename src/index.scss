@@ -10,12 +10,56 @@ body {
 
 header.md-paper.md-paper--0 {
   background-color: #FFA725;
+  // box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
 }
 
-.md-drawer--left.md-drawer--fixed {
-  background: none;
+.md-drawer--left {
+  width: 19rem;
 }
- 
+
+nav ul.md-list.md-list--drawer {
+  // background: rgb(255,252,245);
+  // background: radial-gradient(circle, rgba(255,252,245,1) 0%, rgba(250,250,250,1) 100%, rgba(255,255,255,1) 100%);
+  // text-align: left;
+  // min-height: unset;
+  // height: fit-content;
+}
+
+// li.md-list-item {
+//   list-style: none;
+// }
+// section.md-toolbar-relative--prominent dialogs__content drawers__content__scrollable {
+//   margin-top: 1rem;
+// }
+
+.center-welcome-div {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 900px;
+  height: 30rem;
+  text-align: center;
+}
+
+.center-welcome-div div {
+  margin: 3rem;
+}
+
+.mono-font {
+  font-family: "PT Mono";
+}
+
+.md-text-field-container--input {
+  width: 12rem;
+}
+
+section.md-dialog-content.md-dialog-content--padded {
+  max-height: 20rem;
+}
+
 #main-content {
   background-color: #edece6;
 }

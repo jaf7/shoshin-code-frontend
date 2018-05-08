@@ -11,7 +11,7 @@ class Description extends Component {
   render() {
     return(
       <div className="markdown" >
-        {
+        { 
           this.props.exercises.loaded === true ?
           <ReactMarkdown 
           source={this.props.exercise ? this.props.exercise.description : defaultDescription}
@@ -29,12 +29,13 @@ class Description extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state.exercises in Description mSTP: ', state.exercises)
-  console.log('ownProps.exercise in Description mSTP: ', ownProps.exercise)
+  // console.log('state.exercises in Description mSTP: ', state.exercises)
+  // console.log('ownProps.exercise in Description mSTP: ', ownProps.exercise)
   return {
     exercises: state.exercises,
     exercise: ownProps.exercise
   }
 }
 
-export default connect( mapStateToProps )( Description )
+export default connect( mapStateToProps )( Description ) 
+ 

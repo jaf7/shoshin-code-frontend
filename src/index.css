@@ -3653,8 +3653,31 @@ body {
 header.md-paper.md-paper--0 {
   background-color: #FFA725; }
 
-.md-drawer--left.md-drawer--fixed {
-  background: none; }
+.md-drawer--left {
+  width: 19rem; }
+
+.center-welcome-div {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 900px;
+  height: 30rem;
+  text-align: center; }
+
+.center-welcome-div div {
+  margin: 3rem; }
+
+.mono-font {
+  font-family: "PT Mono"; }
+
+.md-text-field-container--input {
+  width: 12rem; }
+
+section.md-dialog-content.md-dialog-content--padded {
+  max-height: 20rem; }
 
 #main-content {
   background-color: #edece6; }

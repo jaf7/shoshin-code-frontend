@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { updateEditorContent } from '../actions/actions' 
-import { emitEditorContent } from '../actions/actions'
+import { bindActionCreators } from 'redux'
+import { updateEditorContent, emitEditorContent, getSessionContent, setExerciseId, teardownSession } from '../actions/actions' 
+
 import uuid from 'uuid/v1'
 // import brace from 'brace'
 import AceEditor from 'react-ace'
@@ -10,73 +11,89 @@ import 'brace/theme/monokai'
 import 'brace/theme/dawn'
 
 const editorId = uuid()
+let updateKey = 0
 
 class Editor extends Component {
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     content: ''
+
+  componentDidMount() {
+    if ( this.props.loggedIn ) {
+      // this.props.setExerciseId(this.props.exerciseId)
+      this.props.getSessionContent(this.props.userId, this.props.exerciseId) // ensure we don't need ownProps for exerciseId
+      updateKey++
+      this.forceUpdate()
+    }
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if ( this.props.loggedIn ) {
+  //     if ( this.props.exercise !== nextProps.exercise ) {
+  //       updateKey++
+  //       this.forceUpdate()
+  //     }
   //   }
   // }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.content !== nextProps.content) {
-      return false
-    } else {
-      return true
-    }
+    // return nextProps.sessionContent !== this.props.sessionContent ? true : false
+    return !this.props.loggedIn ? false : nextProps.sessionLoaded !== this.props.sessionLoaded ? true : false
+    // return nextProps.exerciseId !== this.props.exerciseId ? true : false
+
   }
 
-  onChange = (newValue, e) => {
-    // console.log(`event ${Object.keys(e)}`)
-    // console.log(`start ${e.start}, end ${e.end}, action ${e.action}, lines ${e.lines}`)
-    this.setState({ content: newValue }, () => console.log(this.state.content))
+  componentWillUnmount() {
+    this.props.teardownSession()
   }
 
   keyListener = (e) => {
     // console.log(`e keys ${Object.keys(e)}`)
   }
 
-  // emitContent = () => {
-  //   this.props.setContent(this.state.content)
-  // }
- 
   render() {
     return(
-      <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} >
-        <AceEditor
-          defaultValue="" // changed to redux store
-          mode="javascript"
-          theme="dawn"
+      <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} key={updateKey} >
+          <AceEditor
 
-          onChange={this.props.updateContent}
-          debounceChangePeriod={200}
-          name={editorId}
-          editorProps={{$blockScrolling: false}}
-          width="auto"
-          commands={[
-            {
-              name: 'sendCode',
-              bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
-              exec: () => { this.props.emitContent(this.props.content) }
-            }]}
-        />
+            mode="javascript"
+            theme="dawn"
+            value={this.props.sessionContent}
+            onChange={this.props.updateContent} // passes current value newValue
+            debounceChangePeriod={200}
+            name={editorId}
+            
+            width="auto"
+            commands={[
+              {
+                name: 'sendCode',
+                bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
+                exec: () => { this.props.emitContent(this.props.currentContent) }
+              }]}
+          />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+
   return {
-    content: state.editor.currentContent
+    currentContent: state.editor.currentContent,
+    sessionLoaded: state.user.editorSession.loaded,
+    sessionContent: state.user.editorSession.content,
+    loggedIn: state.user.loggedIn,
+    userId: state.user.id,
+    exercise: ownProps.exercise,
+    exerciseId: ownProps.exerciseId
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
+  return bindActionCreators({
     updateContent: newValue => dispatch( updateEditorContent(newValue) ),
-    emitContent: content => dispatch( emitEditorContent(content) )
-  }
+    emitContent: content => dispatch( emitEditorContent(content) ),
+    getSessionContent: getSessionContent,
+    setExerciseId: setExerciseId,
+    teardownSession: teardownSession
+  }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor) // pass component into fn returned by connect(). connect() takes a callback.
+export default connect( mapStateToProps, mapDispatchToProps )(Editor)

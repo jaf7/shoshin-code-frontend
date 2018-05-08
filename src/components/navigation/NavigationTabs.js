@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Tabs, Tab } from 'react-md'
-import { ExerciseChooserLink, TempCurrentExerciseLink, MyExercisesLink } from './Links'
+import { ExerciseChooserLink, DefaultExerciseLink, MyExercisesLink } from './NavigationTabLinks'
 
 
 class NavigationTabs extends Component {
 
-  
+   
 
   render() {
 
@@ -22,10 +22,7 @@ class NavigationTabs extends Component {
             <Tab component={ExerciseChooserLink} id="exercise-chooser-tab" label="Exercises" className="nav-tab" ></Tab>
           </div>
           <div>
-            <Tab component={TempCurrentExerciseLink} id="current-exercise-tab" label="Code It" className="nav-tab" ></Tab>
-          </div>
-          <div>
-            <Tab component={MyExercisesLink} id="my-exercises-tab" label="My Exercises" className="nav-tab" ></Tab>
+            <Tab component={DefaultExerciseLink} id="current-exercise-tab" label="Code It" className="nav-tab" ></Tab>
           </div>
         </Tabs>
 

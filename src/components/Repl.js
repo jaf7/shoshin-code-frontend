@@ -66,8 +66,8 @@ class Repl extends Component {
         const currentRun = new Interpreter( code, init )
         currentRun.run()
         const value = currentRun.value
-        console.log( `EMITTED: ${emittedCode}` )
-        console.log( `INTERP ${value} ${typeof(value)}` )
+        // console.log( `EMITTED: ${emittedCode}` )
+        // console.log( `INTERP ${value} ${typeof(value)}` )
         return value
       } catch (e) {
         let errorMessage = `${e.name}: ${e.message}`

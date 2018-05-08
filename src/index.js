@@ -16,8 +16,7 @@ WebFontLoader.load({
 })
 
 const store = configureStore()
-store.subscribe( () => console.log('New state: ', store.getState() ))
-console.log('---------------')
+store.subscribe( () => console.log('store.getState() --> ', store.getState() ))
 
 ReactDOM.render (
   <Router>

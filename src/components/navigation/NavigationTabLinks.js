@@ -39,7 +39,7 @@ class ExerciseChooserLink extends Component {
   }
 }
 
-class TempCurrentExerciseLink extends Component {
+class DefaultExerciseLink extends Component {
   constructor () {
     super()
     this.state = { active: false }
@@ -47,7 +47,7 @@ class TempCurrentExerciseLink extends Component {
 
   tabClick = ( e ) => {
     this.setState({active: !this.state.active})
-    console.log('------------------')
+    console.log('------------------') 
     console.log('tabClick target: ', e.target)
     console.log('state: ', this.state.active)
     console.log('------------------')
@@ -59,14 +59,14 @@ class TempCurrentExerciseLink extends Component {
         {
           this.state.active ? 
           <li id="navigation-1" role="tab" aria-controls="navigation-panel-1" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--inactive nav-tab" tabIndex="1">
-            <Link to="/temporary-current-exercise" className="override-tab-label" onClick={this.tabClick} >
+            <Link to="/default-exercise" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_current_tab" className="override-tab-label">Code It</div>
             </Link>
           </li>
           :
           <li id="navigation-1" role="tab" aria-controls="navigation-panel-1" aria-selected="true" className="override-tab-li md-fake-btn md-pointer--hover md-fake-btn--no-outline md-tab md-tab--active nav-tab" tabIndex="1">
-            <Link to="/temporary-current-exercise" className="override-tab-label" onClick={this.tabClick} >
+            <Link to="/default-exercise" className="override-tab-label" onClick={this.tabClick} >
               <div className="md-ink-container"></div>
               <div id="ex_current_tab" className="override-tab-label">Code It</div>
             </Link>
@@ -115,5 +115,5 @@ class MyExercisesLink extends Component {
   }
 }
 
-export { ExerciseChooserLink, TempCurrentExerciseLink, MyExercisesLink }
+export { ExerciseChooserLink, DefaultExerciseLink, MyExercisesLink }
 
