@@ -84,13 +84,13 @@ class Repl extends Component {
     return (
 
       <div className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--6" style={{'padding':'.4rem', 'textAlign':'left', 'fontFamily':'monospace' }} >
-        <div style={{'height':'100%', 'backgroundColor':'#F7F7F7'}}>
+        <div style={{'height':'100%', 'backgroundColor':'#1D292D', 'padding':'1rem', 'color':'cornsilk', 'fontFamily':'PT monospace', 'fontSize':'1.4rem'}}>
           {/*<Cell size={12}>*/}
             {/*<div className="md-text-container">*/}
               {/*<textarea>*/}
                 {/*Interpreter*/}
                 {/*{ this.props.emitContent.includes('console.log') ? 'see console' : typeof(output) === 'undefined' ? 'undefined' : output.toString() }*/}
-                { typeof(output) === 'undefined' ? 'output undefined' : output.toString() }
+                { typeof(output) === 'undefined' ? 'output undefined' : '=> ' + output.toString() }
 
 
               {/*</textarea>*/}

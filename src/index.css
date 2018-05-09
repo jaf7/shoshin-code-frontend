@@ -3723,3 +3723,7 @@ div.markdown a:hover {
   text-decoration: none;
   color: green;
   font-size: 1.3rem; }
+
+.microlight {
+  font-family: monospace;
+  white-space: pre; }

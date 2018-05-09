@@ -55,6 +55,7 @@ class Editor extends Component {
 
             mode="javascript"
             theme="dawn"
+            fontSize={15}
             value={this.props.sessionContent}
             onChange={this.props.updateContent} // passes current value newValue
             debounceChangePeriod={200}
