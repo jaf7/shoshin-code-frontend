@@ -3699,6 +3699,9 @@ div.md-icon-separator {
 h3.md-card-title--title.md-text--secondary {
   font-size: 1.3rem; }
 
+section.md-card-text {
+  padding-bottom: 4rem; }
+
 .markdown {
   margin: 1rem; }
 

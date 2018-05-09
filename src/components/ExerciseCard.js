@@ -29,7 +29,7 @@ class ExerciseCard extends Component {
         <CardTitle title={this.props.exercise.name} subtitle={this.props.exercise.tags[0]}/>
         <CardText>
           <p>
-            { this.props.exercise.description.substring(0, 175) + ' ...' } 
+            { this.props.exercise.description.substring(0, 200) + ' ...' } 
           </p>
         </CardText>
         <div className="buttons_group" style={buttonDivStyle} >
