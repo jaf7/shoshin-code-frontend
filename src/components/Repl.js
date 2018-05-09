@@ -61,7 +61,7 @@ class Repl extends Component {
       return interpret( emittedCode, initFunction )
     }
 
-    function interpret( code, init ) {
+    function interpret( code, init ) { 
       try {
         const currentRun = new Interpreter( code, init )
         currentRun.run()
