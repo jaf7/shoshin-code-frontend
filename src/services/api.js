@@ -1,4 +1,4 @@
-// production
+ // production
 // export const API_ROOT = 'http://afc0fddd.ngrok.io'
 // export const API_WS_ROOT = 'ws://afc0fddd.ngrok.io/cable'
 
@@ -15,7 +15,7 @@
 // 6. run npm install && npm start in the frontend
 
 export const API_ROOT = 'http://localhost:3001'
-export const API_WS_ROOT = 'ws://localhost:3000/cable'
+export const API_WS_ROOT = 'ws://localhost:3001/cable' 
 
 const token = localStorage.getItem('token')
 export const HEADERS = {
@@ -60,6 +60,15 @@ const updateSessionContent = data => {
   }).then(res => res.json())
 }
 
+const createEdit = data => {
+  return fetch(`${API_ROOT}/edits`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify( data )
+  })
+}
+
+
 const removeExerciseFromCollection = data => {
   return fetch(`${API_ROOT}/remove_session`, {
     method: 'PATCH',
@@ -103,6 +112,7 @@ export const adapter = {
     retrieveExercises,
     retrieveSessionContent,
     updateSessionContent,
+    createEdit,
     retrieveUserExerciseCollection,
     removeExerciseFromCollection
   }

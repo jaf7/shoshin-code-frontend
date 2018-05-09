@@ -11,6 +11,7 @@
     "npm-run-all": "^4.1.2",
     "react": "^16.3.2",
     "react-ace": "^6.1.0",
+    "react-actioncable-provider": "^1.0.3",
     "react-dom": "^16.3.2",
     "react-json-view": "^1.16.1",
     "react-loader-spinner": "^2.1.0",

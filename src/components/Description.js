@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
 // import hljs from 'highlight.js'
-import CodeBlock from '../utils/CodeBlock'
+import CodeBlock from '../utils/CodeBlock' 
 
 const defaultDescription = "# Welcome to Shoshin\n\nChoose an exercise from the Exercises menu above, or:\n\n```\nfunction startCoding ( skill, levelUp ) {\n \u0020 \u0020 return levelUp( skill )\n}\n\n```"
 

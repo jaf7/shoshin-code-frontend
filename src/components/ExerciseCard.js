@@ -6,7 +6,7 @@ import { getSessionContent, setExerciseId, setExerciseSlug } from '../actions/ac
 
 import { Card, CardTitle, CardText } from 'react-md'
 import { Button } from 'react-md'
-import MaterialIcon, {colorPallet} from 'material-icons-react' 
+import MaterialIcon, {colorPallet} from 'material-icons-react'
 
 const cardStyle = { minWidth: 200, alignItems: 'center' }
 const buttonDivStyle = { padding: '.4rem' }
@@ -29,7 +29,7 @@ class ExerciseCard extends Component {
         <CardTitle title={this.props.exercise.name} subtitle={this.props.exercise.tags[0]}/>
         <CardText>
           <p>
-            { this.props.exercise.description.substring(0, 175) + ' ...' }
+            { this.props.exercise.description.substring(0, 175) + ' ...' } 
           </p>
         </CardText>
         <div className="buttons_group" style={buttonDivStyle} >

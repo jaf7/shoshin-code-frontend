@@ -23,7 +23,7 @@ class App extends PureComponent {
 
   render() {
     return (
-      <MainContainer />
+      <MainContainer /> 
     )
   }
 }

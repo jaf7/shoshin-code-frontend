@@ -90,6 +90,24 @@ export function rootReducer( state = defaultState, action ) {
           emitContent: state.editor.emitContent
         }
       }
+    case 'UPDATE_SESSION_CONTENT_WITH_SOCKET_RESPONSE':
+      // console.log('new socket text: ', action.payload.text)
+      return { ...state,
+        user: { ...state.user,
+          editorSession: { ...state.user.editorSession,
+            content: action.payload.text
+          }
+        }
+      }
+    case 'APPEND_SHARE_URL_TO_SESSION_CONTENT':
+      console.log('share url: ', action.payload.urlText)
+      return { ...state,
+        user: { ...state.user,
+          editorSession: { ...state.user.editorSession,
+            content: state.user.editorSession.content.concat(action.payload.urlText)
+          }
+        }
+      }
     case 'UPDATE_EDITOR_KEY':
       // console.log('############ EDITOR KEY ###############')
       // console.log('------------> ', state.editor.key )

@@ -1,7 +1,9 @@
 import React, { Component, PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { updateEditorContent, emitEditorContent, getSessionContent, setExerciseId, teardownSession } from '../actions/actions' 
+import { updateEditorContent, emitEditorContent, getSessionContent, setExerciseId, teardownSession, generateEditStream, updateSessionWithSocketResponse } from '../actions/actions'
+import { ActionCable } from 'react-actioncable-provider'
 
 import uuid from 'uuid/v1'
 // import brace from 'brace'
@@ -18,25 +20,25 @@ class Editor extends Component {
   componentDidMount() {
     if ( this.props.loggedIn ) {
       // this.props.setExerciseId(this.props.exerciseId)
-      this.props.getSessionContent(this.props.userId, this.props.exerciseId) // ensure we don't need ownProps for exerciseId
+      this.props.getSessionContent(this.props.userId, this.props.exerciseId)
       updateKey++
       this.forceUpdate()
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if ( this.props.loggedIn ) {
-  //     if ( this.props.exercise !== nextProps.exercise ) {
-  //       updateKey++
-  //       this.forceUpdate()
-  //     }
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+
+      if ( this.props.sessionContent !== nextProps.sessionContent ) {
+        console.log('sessionContent: ', nextProps.sessionContent)
+      }
+
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // return nextProps.sessionContent !== this.props.sessionContent ? true : false
-    return !this.props.loggedIn ? false : nextProps.sessionLoaded !== this.props.sessionLoaded ? true : false
+    // return !this.props.loggedIn ? false : nextProps.sessionLoaded !== this.props.sessionLoaded ? true : false
+    // return nextProps.sessionLoaded !== this.props.sessionLoaded ? true : false
     // return nextProps.exerciseId !== this.props.exerciseId ? true : false
+    return nextProps.sessionContent !== this.props.sessionContent ? true : false
 
   }
 
@@ -48,19 +50,53 @@ class Editor extends Component {
     // console.log(`e keys ${Object.keys(e)}`)
   }
 
+  handleChange = ( newValue ) => {
+    // console.log('---------------- 1) handleChange newValue --------------')
+    // console.log( newValue )
+    // console.log('---------------- 1) handleChange newValue --------------')
+    this.props.updateContent( newValue )
+    this.props.generateEdit( newValue, editorId )
+  }
+
+  handleReceivedEditStream = ( editStream ) => {
+    // if this is a read-only instance, update the sessionContent directly - state.user.editorSession.content
+    // this will update the viewed text value in the editor (value= prop)
+    console.log('editorId: ', editorId, 'sender_id: ', editStream.sender_id)
+    editStream.sender_id !== editorId ? this.props.addSocketResponse( editStream.text ) : null
+  }
+
+  isReadOnlyMode = () => {
+    return window.location.href.includes('readonly') ? true : false
+  }
+
   render() {
+    // console.log('===========> window.location.href <=============')
+    // console.log( window.location.href )
+    // console.log('===========> window.location.href <=============')
+    this.isReadOnlyMode() ? console.log('READ ONLY') : console.log('NOT READ ONLY')
+
     return(
       <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} key={updateKey} >
+        <ActionCable
+          channel={{ channel: 'EditsChannel' }}
+          onReceived={ data => {
+            // console.log('---------------- 3) received data --------------')
+            // console.log( data.edit )
+            // console.log('---------------- 3) received data --------------')
+            this.handleReceivedEditStream( data.edit )
+          }}
+        />
+      
+        { this.isReadOnlyMode() ?
           <AceEditor
-
+            readOnly={true}
             mode="javascript"
             theme="dawn"
             fontSize={15}
             value={this.props.sessionContent}
-            onChange={this.props.updateContent} // passes current value newValue
+            onChange={null} // passes current value, newValue --> state.editor.currentContent
             debounceChangePeriod={200}
             name={editorId}
-            
             width="auto"
             commands={[
               {
@@ -69,6 +105,25 @@ class Editor extends Component {
                 exec: () => { this.props.emitContent(this.props.currentContent) }
               }]}
           />
+          :
+          <AceEditor
+            mode="javascript"
+            theme="dawn"
+            fontSize={15}
+            value={this.props.sessionContent}
+            onChange={this.handleChange} // passes current value, newValue --> state.editor.currentContent this.handleChange
+            debounceChangePeriod={200}
+            name={editorId}
+            width="auto"
+            commands={[
+              {
+                name: 'sendCode',
+                bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
+                exec: () => { this.props.emitContent(this.props.currentContent) }
+              }]}
+          />
+        }
+
       </div>
     )
   }
@@ -91,10 +146,12 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     updateContent: newValue => dispatch( updateEditorContent(newValue) ),
     emitContent: content => dispatch( emitEditorContent(content) ),
+    generateEdit: generateEditStream,
+    addSocketResponse: updateSessionWithSocketResponse,
     getSessionContent: getSessionContent,
     setExerciseId: setExerciseId,
     teardownSession: teardownSession
   }, dispatch)
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )(Editor)
+export default withRouter( connect( mapStateToProps, mapDispatchToProps )( Editor ) )

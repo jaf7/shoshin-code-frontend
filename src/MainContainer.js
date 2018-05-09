@@ -15,7 +15,7 @@ import Logout from './components/auth/Logout'
 import HomeButton from './components/HomeButton'
 import UserBadge from './components/UserBadge'
 
-import { saveSessionContent, getUserExerciseCollection } from './actions/actions'
+import { saveSessionContent, getUserExerciseCollection, addShareUrlToSession } from './actions/actions'
 
 const styles = {
   content: { textAlign: 'left', minHeight: 'unset', height: 'fit-content' }
@@ -46,13 +46,12 @@ class MainContainer extends Component {
     this.props.saveSessionContent( this.props.userId, this.props.exerciseId, this.props.currentContent )
     updateKey++
   }
-  // shareSession appends commented url to editor content? or pops up a modal with a copy-able url
-  // url uses slug and appends a param ( that should be used by the editor component to toggle read-only, maybe we don't need state - props.match.params)
-  // shareSession = () => this.props.shareUrl( this.props.currentSlug )
+
   shareSession = () => {
-    // console.log('@@@@@@@@@ shareSession clicked @@@@@@@@')
-    // console.log('currentSlug: ', this.props.currentSlug)
-    // console.log('@@@@@@@@@ shareSession clicked @@@@@@@@')
+    let text = '\r\n\/\/ SHARE URL, SLACK IT OUT:\r\n'
+    let url = '\/\/ ' + window.location.href.concat('?readonly')
+    let urlText = text.concat(url)
+    this.props.shareSessionUrl( urlText )
   }
  
   render() {
@@ -117,8 +116,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     saveSessionContent: saveSessionContent,
-    getExerciseCollection: getUserExerciseCollection
-    // shareUrl: shareUrl
+    getExerciseCollection: getUserExerciseCollection,
+    shareSessionUrl: addShareUrlToSession
   }, dispatch)
 }
 

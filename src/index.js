@@ -2,9 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
+import { ActionCableProvider } from 'react-actioncable-provider'
 import App from './App'
 import configureStore from './configureStore'
 import registerServiceWorker from './registerServiceWorker'
+import { API_WS_ROOT } from './services/api' 
 
 import './index.css'
 import './App.css'
@@ -16,14 +18,16 @@ WebFontLoader.load({
 })
 
 const store = configureStore()
-store.subscribe( () => console.log('store.getState() --> ', store.getState() ))
+// store.subscribe( () => console.log('store.getState() --> ', store.getState() ))
 
 ReactDOM.render (
-  <Router>
-    <Provider store={store} >
-      <App />
-    </Provider>
-  </Router>,
+  <ActionCableProvider url={API_WS_ROOT}> 
+    <Router>
+      <Provider store={store} >
+        <App /> 
+      </Provider>
+    </Router>
+  </ActionCableProvider>,
  document.getElementById('root')
  );
 

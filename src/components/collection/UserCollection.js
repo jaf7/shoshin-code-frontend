@@ -40,7 +40,7 @@ class UserCollection extends Component {
             'listStyle':'none',
           }}
         >
-          { this.props.exerciseCollection.map(exercise => <ExerciseListItem exercise={exercise} />) }
+          { this.props.exerciseCollection.map(exercise => <ExerciseListItem exercise={exercise} />) } 
         </section> 
     )
   }

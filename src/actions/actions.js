@@ -7,7 +7,29 @@ export const updateEditorContent = newValue => {
   }
 }
 
-export const emitEditorContent = content => {
+export const generateEditStream = ( newValue, editorId ) => dispatch => {
+  adapter.data.createEdit( {newValue, editorId} ).then(data => {
+    console.log('----------- 2) response from socket server -------------')
+    console.log(data)
+    console.log('----------- 2) response from socket server -------------')
+  })
+}
+
+export const updateSessionWithSocketResponse = ( text ) => dispatch => {
+  // console.log('updateSession action, text: ', text)
+  dispatch ({
+    type: 'UPDATE_SESSION_CONTENT_WITH_SOCKET_RESPONSE',
+    payload: {text: text}
+  })
+}
+
+export const addShareUrlToSession = ( shareUrlText ) => dispatch => {
+  dispatch({
+    type: 'APPEND_SHARE_URL_TO_SESSION_CONTENT',
+    payload: {urlText: shareUrlText}
+  })
+}
+export const emitEditorContent = content => { 
   return {
     type: 'EMIT_EDITOR_CONTENT',
     payload: { emitContent: content }
