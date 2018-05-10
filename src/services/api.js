@@ -14,11 +14,11 @@
 // 5. navigate to the URL in the browser (should see data)
 // 6. run npm install && npm start in the frontend
 
-// export const API_ROOT = 'https://shoshin-code-backend.herokuapp.com'
-// export const API_WS_ROOT = 'wss://shoshin-code-backend.herokuapp.com/cable' 
+export const API_ROOT = 'https://shoshin-code-backend.herokuapp.com'
+export const API_WS_ROOT = 'wss://shoshin-code-backend.herokuapp.com/cable' 
 
-export const API_ROOT = 'http://localhost:3001'
-export const API_WS_ROOT = 'ws://localhost:3001/cable' 
+// export const API_ROOT = 'http://localhost:3001'
+// export const API_WS_ROOT = 'ws://localhost:3001/cable' 
 
 const token = localStorage.getItem('token')
 export const HEADERS = {
