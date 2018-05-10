@@ -3663,15 +3663,35 @@ header.md-paper.md-paper--0 {
   right: 0;
   bottom: 0;
   left: 0;
-  width: 900px;
+  width: 1100px;
   height: 30rem;
   text-align: center; }
 
 .center-welcome-div div {
   margin: 3rem; }
 
+.center-welcome-div div p {
+  font-size: 1.3rem; }
+
+.shoshin-quote {
+  font-size: 1.4rem; }
+
+p.shoshin-attribution {
+  font-size: 1.5rem; }
+
+.welcome-heading {
+  padding-bottom: 1.5rem; }
+
 .mono-font {
-  font-family: "PT Mono"; }
+  font-family: "PT Mono";
+  font-size: 1.2rem; }
+
+.welcome-instructions {
+  line-height: 2.4rem; }
+
+.welcome-welcome {
+  margin-bottom: 1.7rem;
+  font-size: 1.5rem; }
 
 .md-text-field-container--input {
   width: 12rem; }
