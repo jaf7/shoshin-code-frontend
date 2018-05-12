@@ -80,8 +80,8 @@ class MainContainer extends Component {
         toolbarTitle=" "
         toolbarChildren={<NavigationTabs/>}
         toolbarActions={this.rightSideActions()}
-        drawerChildren={<UserCollection key={updateKey} />}
-        onVisibilityChange={this.getCollection}
+        drawerChildren={this.props.loggedIn ? <UserCollection key={updateKey} /> : null} 
+        onVisibilityChange={this.props.loggedIn ? this.getCollection : null}
       >
         <Switch>
           <Route path="/exercise-chooser" component={ExerciseChooser} />
