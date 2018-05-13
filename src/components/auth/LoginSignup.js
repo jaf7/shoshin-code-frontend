@@ -36,10 +36,6 @@ class LoginSignup extends PureComponent {
     e.preventDefault()
     this.hide()
     const { fields: { username, password } } = this.state
-    console.log('--------------')
-    console.log('login fields: ', this.state.fields)
-    console.log('--------------')
-    // match, location, history props made available by wrapping in withRouter
     this.props.loginUser( username, password, this.props.history ) 
   }
 
