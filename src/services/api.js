@@ -1,8 +1,4 @@
-export const API_ROOT = 'https://shoshin-code-backend.herokuapp.com'
-export const API_WS_ROOT = 'wss://shoshin-code-backend.herokuapp.com/cable' 
-
-// export const API_ROOT = 'http://localhost:3001'
-// export const API_WS_ROOT = 'ws://localhost:3001/cable' 
+import { API_ROOT, API_WS_ROOT } from './api-config'
 
 const token = localStorage.getItem('token')
 export const HEADERS = {
@@ -20,7 +16,6 @@ const retrieveExercises = () => {
 }
 
 const retrieveUserExerciseCollection = data => {
-  // console.log('************retrieveExerciseCollection***************')
   return fetch(`${API_ROOT}/user_exercises`, {
     method: 'POST',
     headers: HEADERS,
@@ -29,7 +24,6 @@ const retrieveUserExerciseCollection = data => {
 }
 
 const retrieveSessionContent = data => {
-  // console.log('************retrieveSessionContent***************')
   return fetch(`${API_ROOT}/current_session`, {
     method: 'POST',
     headers: HEADERS,
@@ -38,7 +32,6 @@ const retrieveSessionContent = data => {
 }
 
 const updateSessionContent = data => {
-  // console.log('************updateSessionContent***************')
   // console.log('udpate data: ', data)
   return fetch(`${API_ROOT}/current_session`, {
     method: 'PATCH',
@@ -55,7 +48,6 @@ const createEdit = data => {
   })
 }
 
-
 const removeExerciseFromCollection = data => {
   return fetch(`${API_ROOT}/remove_session`, {
     method: 'PATCH',
@@ -64,12 +56,6 @@ const removeExerciseFromCollection = data => {
   }).then(res => res.json())
 }
 
-// const getWithToken = url => {
-//   const token = localStorage.getItem('token');
-//   return fetch(url, {
-//     headers: { Authorization: token }
-//   }).then(res => res.json())
-// }
 const getWithToken = api_url => {
   const token = localStorage.getItem('token')
   return fetch(api_url, {

@@ -6,7 +6,7 @@ import { ActionCableProvider } from 'react-actioncable-provider'
 import App from './App'
 import configureStore from './configureStore'
 import registerServiceWorker from './registerServiceWorker'
-import { API_WS_ROOT } from './services/api' 
+import { API_WS_ROOT } from './services/api-config'
 
 import './index.css'
 import './App.css'

@@ -45,14 +45,12 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'SETTING_USER_EXERCISE_COLLECTION':
-    // console.log('&&&&&&&&&SETTING COLLECTION loaded false &&&&&&&&&&&&&&&&&&&')
       return { ...state,
         user: { ...state.user,
           exerciseCollectionLoaded: false
         }
       }
     case 'SET_USER_EXERCISE_COLLECTION':
-    // console.log('&&&&&&&&&SET COLLECTION Loaded true &&&&&&&&&&&&&&&&&&&')
       return { ...state,
         user: { ...state.user,
           exerciseCollectionLoaded: true,
@@ -68,7 +66,6 @@ export function rootReducer( state = defaultState, action ) {
         ...state, editor: { ...state.editor, emitContent: action.payload.emitContent }
       }
     case 'GETTING_SESSION_CONTENT':
-      // console.log('**********GETTING_SESSION_CONTENT**************')
       return { ...state,
         user: { ...state.user,
           editorSession: { ...state.user.editorSession,
@@ -77,21 +74,19 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'SET_USER_EDITOR_SESSION':
-      // console.log('**********SETTING_SESSION_CONTENT**************')
       return { ...state,
         user: { ...state.user,
           editorSession: { 
             loaded: true,
-            content: action.payload.editorContent ? action.payload.editorContent : 'DEFAULT STATE - EMPTY EDITOR SESSION'
+            content: action.payload.editorContent ? action.payload.editorContent : "\/\/ Welcome! I hope you have as much fun practicing your coding skills with\r\n\/\/ this tool as I\'m having building it! If you\'re using it to practice,\r\n\/\/ you already know that coding is an iterative process. In that spirit,\r\n\/\/ this editor-interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let] while coding here. You\'ll have to stick\r\n\/\/ with [var] - for now ... ES6 will be in the next version!\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. :( It will be!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER"
           }
         },
         editor: { ...state.editor,
-          currentContent: action.payload.editorContent ? action.payload.editorContent : 'DEFAULT STATE - EMPTY EDITOR SESSION',
+          currentContent: action.payload.editorContent ? action.payload.editorContent : "\/\/ Welcome! I hope you have as much fun practicing your coding skills with\r\n\/\/ this tool as I\'m having building it! If you\'re using it to practice,\r\n\/\/ you already know that coding is an iterative process. In that spirit,\r\n\/\/ this editor-interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let] while coding here. You\'ll have to stick\r\n\/\/ with [var] - for now ... ES6 will be in the next version!\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. :( It will be!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER",
           emitContent: state.editor.emitContent
         }
       }
     case 'UPDATE_SESSION_CONTENT_WITH_SOCKET_RESPONSE':
-      // console.log('new socket text: ', action.payload.text)
       return { ...state,
         user: { ...state.user,
           editorSession: { ...state.user.editorSession,
@@ -109,9 +104,6 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'UPDATE_EDITOR_KEY':
-      // console.log('############ EDITOR KEY ###############')
-      // console.log('------------> ', state.editor.key )
-      // console.log('############ EDITOR KEY ###############')
       return { ...state,
         editor: { ...state.editor,
           key: state.editor.key + 1
@@ -130,7 +122,6 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'TEARDOWN_SESSION':
-    // console.log('$$$$$$$$$REDUCER TEARDOWN$$$$$$$$$$$$')
       return { ...state,
         exercises: { ...state.exercises,
           currentId: 'a06b3126-521a-11e8-9c2d-fa7ae01bbebc'
@@ -156,7 +147,6 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'UNSET_USER_LOGIN_ERROR':
-    // console.log('*************unset error****************')
       return { ...state,
         user: { ...state.user,
           error: {
@@ -173,7 +163,7 @@ export function rootReducer( state = defaultState, action ) {
           id: action.userObject.id
         }
       }
-    case 'LOGOUT_USER':
+    case 'LOGOUT_USER': 
       return { ...state,
         user: { ...state.user,
           name: '',
