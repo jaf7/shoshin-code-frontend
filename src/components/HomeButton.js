@@ -5,7 +5,7 @@ import { Button } from 'react-md'
 import MaterialIcon, {colorPallet} from 'material-icons-react'
 import * as actions from '../actions/actions'
 
-class HomeButton extends PureComponent {
+class HomeButton extends PureComponent { 
 
   goHome = () => {
     this.props.goHome(this.props.history)
@@ -14,6 +14,7 @@ class HomeButton extends PureComponent {
   render() {
     return (
       <Button
+        className="right-side"
         flat
         iconEl={<MaterialIcon icon="home" iconBefore={false} color={colorPallet.orange.A200} />}
         onClick={this.goHome}

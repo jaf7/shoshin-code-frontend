@@ -76,6 +76,20 @@ p.shoshin-attribution {
   line-height: 2.4rem;
 }
 
+a.welcome-link {
+  color: #5A7D8C;
+  text-decoration: none;
+}
+
+a.welcome-link:hover {
+  text-decoration: underline;
+}
+
+span.blue-background {
+  background: #5a7d8c87;
+  padding: 0 .4rem;
+}
+
 .welcome-welcome {
   margin-bottom: 1.7rem;
   font-size: 1.5rem;
@@ -109,7 +123,11 @@ div.md-icon-separator {
   top: 0px;
 }
 
-div button.md-btn.md-btn--flat {
+div button.right-side {
+  width: 10rem;
+}
+
+div button.md-btn.md-btn--flat { 
   margin-right: 1.5rem;
 }
 

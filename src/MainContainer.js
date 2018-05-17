@@ -8,7 +8,6 @@ import MaterialIcon, {colorPallet} from 'material-icons-react'
 import NavigationTabs from './components/navigation/NavigationTabs'
 import Welcome from './components/welcome/Welcome'
 import ExerciseChooser from './components/ExerciseChooser'
-import OldUserCollection from './components/OldUserCollection'
 import UserCollection from './components/collection/UserCollection'
 import ExerciseContainer from './components/ExerciseContainer' 
 import Logout from './components/auth/Logout'
@@ -85,12 +84,6 @@ class MainContainer extends Component {
       >
         <Switch>
           <Route path="/exercise-chooser" component={ExerciseChooser} />
-          <Route 
-            path="/my-exercises"
-            render={() => {
-              return this.props.loggedIn ? <OldUserCollection/> : <Redirect to="/" />
-            }}
-          />
           <Route path="/exercise/:slug" component={ExerciseContainer} />
           <Route path="/default-exercise" component={ExerciseContainer} />
           <Route path="/" component={Welcome} />

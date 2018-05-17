@@ -16,6 +16,7 @@ class Logout extends PureComponent {
   render() {
     return (
       <Button
+        className="right-side"
         flat
         iconEl={<MaterialIcon icon="exit_to_app" iconBefore={false} color={colorPallet.orange.A200} />}
         onClick={this.logout}

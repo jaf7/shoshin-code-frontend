@@ -3689,6 +3689,17 @@ p.shoshin-attribution {
 .welcome-instructions {
   line-height: 2.4rem; }
 
+a.welcome-link {
+  color: #5A7D8C;
+  text-decoration: none; }
+
+a.welcome-link:hover {
+  text-decoration: underline; }
+
+span.blue-background {
+  background: #5a7d8c87;
+  padding: 0 .4rem; }
+
 .welcome-welcome {
   margin-bottom: 1.7rem;
   font-size: 1.5rem; }
@@ -3715,6 +3726,9 @@ section.md-dialog-content.md-dialog-content--padded {
 div.md-icon-separator {
   position: absolute;
   top: 0px; }
+
+div button.right-side {
+  width: 10rem; }
 
 div button.md-btn.md-btn--flat {
   margin-right: 1.5rem; }

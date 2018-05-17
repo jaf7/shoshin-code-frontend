@@ -1,35 +1,35 @@
-import { adapter } from '../services/api' 
+import { adapter } from '../services/api'
 
-export const updateEditorContent = newValue => {
-  return {
-    type: 'UPDATE_EDITOR_CONTENT',
-    payload: { currentContent: newValue }
-  }
-}
-
-export const generateEditStream = ( newValue, editorId ) => dispatch => {
-  adapter.data.createEdit( {newValue, editorId} ).then(data => {
+export const fetchUser = ( history ) => dispatch => {
+  adapter.auth.getCurrentUser().then(userObject => {
+    if (userObject.error) {
+      dispatch({ type: 'SET_USER_LOGIN_ERROR', userObject })
+      history.replace('/')
+    } else {
+      dispatch({ type: 'UNSET_USER_LOGIN_ERROR' })
+      dispatch({ type: 'SET_CURRENT_USER', userObject })
+    }
   })
 }
 
-export const updateSessionWithSocketResponse = ( text ) => dispatch => {
-  dispatch ({
-    type: 'UPDATE_SESSION_CONTENT_WITH_SOCKET_RESPONSE',
-    payload: {text: text}
+export const loginUser = ( username, password, history ) => dispatch => {
+  adapter.auth.login( {username, password} ).then(userObject => {
+    if (userObject.error) {
+      dispatch({ type: 'SET_USER_LOGIN_ERROR', userObject })
+      history.replace('/')
+    } else {
+      dispatch({ type: 'UNSET_USER_LOGIN_ERROR' })
+      dispatch({ type: 'SET_CURRENT_USER', userObject })
+      localStorage.setItem('token', userObject.jwt)
+      history.replace('/')
+    }
   })
 }
 
-export const addShareUrlToSession = ( shareUrlText ) => dispatch => {
-  dispatch({
-    type: 'APPEND_SHARE_URL_TO_SESSION_CONTENT',
-    payload: {urlText: shareUrlText}
-  })
-}
-export const emitEditorContent = content => { 
-  return {
-    type: 'EMIT_EDITOR_CONTENT',
-    payload: { emitContent: content }
-  }
+export const logoutUser = ( history ) => dispatch => {
+  localStorage.removeItem('token')
+  history.replace('/')
+  dispatch({ type: 'LOGOUT_USER' })
 }
 
 export const fetchExercises = () => {
@@ -88,6 +88,39 @@ export const setExerciseSlug = (slug) => dispatch => {
   })
 }
 
+export const updateEditorContent = newValue => {
+  return {
+    type: 'UPDATE_EDITOR_CONTENT',
+    payload: { currentContent: newValue }
+  }
+}
+
+export const emitEditorContent = content => { 
+  return {
+    type: 'EMIT_EDITOR_CONTENT',
+    payload: { emitContent: content }
+  }
+}
+
+export const generateEditStream = ( newValue, editorId ) => dispatch => {
+  adapter.data.createEdit( {newValue, editorId} ).then(data => {
+  })
+}
+
+export const updateSessionWithSocketResponse = ( text ) => dispatch => {
+  dispatch ({
+    type: 'UPDATE_SESSION_CONTENT_WITH_SOCKET_RESPONSE',
+    payload: {text: text}
+  })
+}
+
+export const addShareUrlToSession = ( shareUrlText ) => dispatch => {
+  dispatch({
+    type: 'APPEND_SHARE_URL_TO_SESSION_CONTENT',
+    payload: {urlText: shareUrlText}
+  })
+}
+
 export const toggleIsWelcomeView = () => {
   return { type: 'TOGGLE_IS_WELCOME_VIEW' }
 }
@@ -98,36 +131,4 @@ export const goHome = ( history ) => dispatch => {
 
 export const unsetLoginError = () => {
   return { type: 'UNSET_USER_LOGIN_ERROR' }
-}
-
-export const fetchUser = ( history ) => dispatch => {
-  adapter.auth.getCurrentUser().then(userObject => {
-    if (userObject.error) {
-      dispatch({ type: 'SET_USER_LOGIN_ERROR', userObject })
-      history.replace('/')
-    } else {
-      dispatch({ type: 'UNSET_USER_LOGIN_ERROR' })
-      dispatch({ type: 'SET_CURRENT_USER', userObject })
-    }
-  })
-}
-
-export const loginUser = ( username, password, history ) => dispatch => {
-  adapter.auth.login( {username, password} ).then(userObject => {
-    if (userObject.error) {
-      dispatch({ type: 'SET_USER_LOGIN_ERROR', userObject })
-      history.replace('/')
-    } else {
-      dispatch({ type: 'UNSET_USER_LOGIN_ERROR' })
-      dispatch({ type: 'SET_CURRENT_USER', userObject })
-      localStorage.setItem('token', userObject.jwt)
-      history.replace('/')
-    }
-  })
-}
-
-export const logoutUser = ( history ) => dispatch => {
-  localStorage.removeItem('token')
-  history.replace('/')
-  dispatch({ type: 'LOGOUT_USER' })
 }

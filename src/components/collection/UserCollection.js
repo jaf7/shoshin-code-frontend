@@ -6,31 +6,6 @@ import ExerciseListItem from './ExerciseListItem'
 
 class UserCollection extends Component {
 
-  // componentWillReceiveProps( nextProps ) {
-  //   console.log('=============will receive props UserCollection===============')
-  //   // if ( this.props.exerciseCollection !== nextProps.exerciseCollection ) {
-  //     if ( this.props.exerciseCollectionLoaded !== nextProps.exerciseCollectionLoaded ) {
-  //     this.forceUpdate()
-  //   }
-  // }
-
-  // componentWillUpdate( nextProps ) {
-  //   console.log('=============WILL UPDATE UserCollection===============')
-  //   console.log('this collection: ', this.props.exerciseCollection)
-  //   console.log('next collection: ', nextProps.exerciseCollection)
-  //   console.log('=============WILL UPDATE UserCollection===============')
-  //   if ( this.props.exerciseCollection !== nextProps.exerciseCollection ) {
-  //     updateKey++
-  //     this.forceUpdate()
-  //   }
-  // }
-
-  // shouldComponentUpdate( nextProps ) {
-  //   return this.props.exerciseCollectionLoaded !== nextProps.exerciseCollectionLoaded ? true : false
-  //   // return this.props.sessionLoaded !== nextProps.sessionLoaded ? true : false
-  //   // return this.props.updateKey !== nextProps.updateKey ? true : false
-  // }
-
   render() {
 
     return (

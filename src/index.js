@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ActionCableProvider } from 'react-actioncable-provider'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
-import { ActionCableProvider } from 'react-actioncable-provider'
+
 import App from './App'
 import configureStore from './configureStore'
 import registerServiceWorker from './registerServiceWorker'

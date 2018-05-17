@@ -13,6 +13,7 @@ const UserBadge = (props) => {
     return (
 
       <Button
+        className="right-side"
         flat
         iconEl={<MaterialIcon icon="person_outline" iconBefore={false} color={colorPallet.orange.A200} />}
       >
