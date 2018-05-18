@@ -52,6 +52,7 @@ class LoginSignup extends PureComponent {
         <DialogContainer
           id="login-action-dialog"
           visible={visible}
+          defaultVisibleTransitionable={false}
           onHide={this.hide}
           actions={actions}
           title="Login"

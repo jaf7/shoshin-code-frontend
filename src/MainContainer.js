@@ -3,7 +3,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { NavigationDrawer, Drawer, Button, ListItem } from 'react-md'
+import { NavigationDrawer, Drawer, Button, List, ListItem, DialogContainer } from 'react-md'
 import MaterialIcon, {colorPallet} from 'material-icons-react'
 import NavigationTabs from './components/navigation/NavigationTabs'
 import Welcome from './components/welcome/Welcome'
@@ -23,8 +23,14 @@ const styles = {
 let updateKey = 0
 
 class MainContainer extends Component {
+  constructor () {
+    super()
+    this.state = {
+      clipboardDialogVisible: false
+    }
+  }
 
-  rightSideActions () {
+  rightSideActions = () => {
     let actions = []
     if (!this.props.isWelcomeView) {
       actions.push(<HomeButton/>)
@@ -36,7 +42,6 @@ class MainContainer extends Component {
     return actions
   }
 
-  // on visibility change
   getCollection = () => {
     this.props.getExerciseCollection( this.props.userId )
   }
@@ -47,13 +52,36 @@ class MainContainer extends Component {
   }
 
   shareSession = () => {
-    let text = '\r\n\/\/ SHARE URL, SLACK IT OUT:\r\n'
     let url = '\/\/ ' + window.location.href.concat('?readonly')
-    let urlText = text.concat(url)
-    this.props.shareSessionUrl( urlText )
+    // let text = '\r\n\/\/ SHARE URL, SLACK IT OUT:\r\n'
+    // let urlText = text.concat(url)
+    // this.props.shareSessionUrl( urlText )
+    this.writeToClipboard( url )
+  }
+
+  writeToClipboard = url => {
+    navigator.clipboard.writeText(url)
+    .then(() => {
+      this.showClipboardDialog(url)
+    })
+    .catch(err => {
+      // If user denies clipboard permissions
+      console.error('Could not copy url: ', err)
+    })
+  }
+  
+  showClipboardDialog = (url) => {
+    this.setState({
+      clipboardDialogVisible: true
+    }, console.log('copied to clipboard: ', url))
+  }
+
+  hideClipboardDialog = () => {
+    this.setState({ clipboardDialogVisible: false })
   }
  
   render() {
+    const { clipboardDialogVisible } = this.state
     const drawerType = Drawer.DrawerTypes.PERSISTENT
     const navItemsList = [
             <ListItem
@@ -69,26 +97,42 @@ class MainContainer extends Component {
           ]
 
     return (
-      <NavigationDrawer
-        drawerTitle=">_ Shoshin Code"
-        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
-        tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
-        desktopDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
-        navItems={navItemsList}
-        navStyle={styles.content}
-        toolbarTitle=" "
-        toolbarChildren={<NavigationTabs/>}
-        toolbarActions={this.rightSideActions()}
-        drawerChildren={this.props.loggedIn ? <UserCollection key={updateKey} /> : null} 
-        onVisibilityChange={this.props.loggedIn ? this.getCollection : null}
-      >
-        <Switch>
-          <Route path="/exercise-chooser" component={ExerciseChooser} />
-          <Route path="/exercise/:slug" component={ExerciseContainer} />
-          <Route path="/default-exercise" component={ExerciseContainer} />
-          <Route path="/" component={Welcome} />
-        </Switch>
-      </NavigationDrawer>
+      <div>
+        <NavigationDrawer
+          drawerTitle=">_ Shoshin Code"
+          mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+          tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+          desktopDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+          navItems={navItemsList}
+          navStyle={styles.content}
+          toolbarTitle=" "
+          toolbarChildren={<NavigationTabs/>}
+          toolbarActions={this.rightSideActions()}
+          drawerChildren={this.props.loggedIn ? <UserCollection key={updateKey} /> : null} 
+          onVisibilityChange={this.props.loggedIn ? this.getCollection : null}
+        >
+          <Switch>
+            <Route path="/exercise-chooser" component={ExerciseChooser} />
+            <Route path="/exercise/:slug" component={ExerciseContainer} />
+            <Route path="/default-exercise" component={ExerciseContainer} />
+            <Route path="/" component={Welcome} />
+          </Switch>
+        </NavigationDrawer>
+        <DialogContainer
+          id="clipboard-dialog"
+          focusOnMount={false}
+          width="auto"
+          dialogStyle={{"background":"#FFFFFF"}}
+          titleStyle={{"textAlign":"center", "fontSize":"24px"}}
+          visible={this.state.clipboardDialogVisible}
+          title="Copied"
+          onHide={this.hideClipboardDialog}
+        >
+          <List onClick={this.hide}>
+            <ListItem primaryText="Your share link is copied to the clipboard." />
+          </List>
+        </DialogContainer>
+      </div>
     )
   }
 }

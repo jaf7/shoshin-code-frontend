@@ -93,6 +93,7 @@ class Editor extends Component {
             mode="javascript"
             theme="dawn"
             fontSize={15}
+            highlightActiveLine={true}
             value={this.props.sessionContent}
             onChange={null} // passes current value, newValue --> state.editor.currentContent
             debounceChangePeriod={200}
@@ -110,6 +111,7 @@ class Editor extends Component {
             mode="javascript"
             theme="dawn"
             fontSize={15}
+            highlightActiveLine={true}
             value={this.props.sessionContent}
             onChange={this.handleChange} // passes current value, newValue --> state.editor.currentContent this.handleChange
             debounceChangePeriod={200}
