@@ -52,7 +52,8 @@ class MainContainer extends Component {
   }
 
   shareSession = () => {
-    let url = '\/\/ ' + window.location.href.concat('?readonly')
+    // let url = '\/\/ ' + window.location.href.concat('?readonly')
+    let url = window.location.href.concat('?readonly')
     // let text = '\r\n\/\/ SHARE URL, SLACK IT OUT:\r\n'
     // let urlText = text.concat(url)
     // this.props.shareSessionUrl( urlText )
