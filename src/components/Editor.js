@@ -70,10 +70,8 @@ class Editor extends Component {
   }
 
   render() {
-    // console.log('===========> window.location.href <=============')
-    // console.log( window.location.href )
-    // console.log('===========> window.location.href <=============')
     this.isReadOnlyMode() ? console.log('READ ONLY') : console.log('NOT READ ONLY')
+    const readOnlyState = this.isReadOnlyMode() 
 
     return(
       <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} key={updateKey} >
@@ -95,7 +93,7 @@ class Editor extends Component {
             fontSize={15}
             highlightActiveLine={true}
             value={this.props.sessionContent}
-            onChange={null} // passes current value, newValue --> state.editor.currentContent
+            onChange={null}
             debounceChangePeriod={200}
             name={editorId}
             width="auto"
@@ -113,7 +111,7 @@ class Editor extends Component {
             fontSize={15}
             highlightActiveLine={true}
             value={this.props.sessionContent}
-            onChange={this.handleChange} // passes current value, newValue --> state.editor.currentContent this.handleChange
+            onChange={this.handleChange}
             debounceChangePeriod={200}
             name={editorId}
             width="auto"
@@ -125,7 +123,6 @@ class Editor extends Component {
               }]}
           />
         }
-
       </div>
     )
   }

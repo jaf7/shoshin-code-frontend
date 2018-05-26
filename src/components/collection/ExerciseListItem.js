@@ -8,7 +8,9 @@ import { ListItem, Button } from 'react-md'
 import MaterialIcon, {colorPallet} from 'material-icons-react'
 
 const styles = {
-  savedSessions: { listStyle: 'none', marginTop: '1rem' }
+  wrapper: { 'display':'flex', 'justifyContent':'spaceBetween' },
+  savedSessions: { listStyle: 'none', marginTop: '1rem' },
+  listItem: { 'overflow':'hidden' }
 }
 
 class ExerciseListItem extends Component {
@@ -35,11 +37,12 @@ class ExerciseListItem extends Component {
 
   render() {
     return (
-      <div style={{'display':'flex', 'justifyContent':'spaceBetween'}}>
+      <div style={styles.wrapper}>
         <Button onClick={this.removeExercise} icon iconEl={<MaterialIcon icon="delete" color={colorPallet.blueGrey._500}/>}></Button>
         <ListItem
           primaryText={ this.props.exercise.name.length > 24 ? '>_ ' + this.props.exercise.name.substring(0,23) + '...' : '>_ ' + this.props.exercise.name }
           activeBoxStyle={styles.savedSessions}
+          style={styles.listItem}
           onClick={this.loadExercise}
           />
       </div>
