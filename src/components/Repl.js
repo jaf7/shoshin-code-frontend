@@ -33,8 +33,6 @@ class Repl extends Component {
     }
     interpreter.setProperty( scope, 'alert', interpreter.createNativeFunction(alertWrapper) )
 
-    // none of the below are the source of 'console is undefined' so it must be what's passed in
-    // but if you try log('hello') you get 'log is undefined' also
     // interpreter.nativeToPseudo({
     //   log(...args) { console.log(...args) }
     // })
@@ -51,7 +49,7 @@ class Repl extends Component {
       let pattern = /\((.*?)\)/;
       let arg = emittedCode.match( pattern )[0]
       if ( typeof arg === 'string' ) {
-        console.log( `STRING ARG: ${arg}` ) // work on making this the output first
+        console.log( `STRING ARG: ${arg}` )
         return arg.slice( 2, arg.length - 2 )
       } else {
         console.log( `NON-STRING CONSOLE ARG: ${arg[1]}` )
@@ -66,8 +64,6 @@ class Repl extends Component {
         const currentRun = new Interpreter( code, init )
         currentRun.run()
         const value = currentRun.value
-        // console.log( `EMITTED: ${emittedCode}` )
-        // console.log( `INTERP ${value} ${typeof(value)}` )
         return value
       } catch (e) {
         let errorMessage = `${e.name}: ${e.message}`
@@ -85,23 +81,12 @@ class Repl extends Component {
 
       <div className="repl-cell md-paper md-paper--1 md-card md-background--card md-cell md-cell--4" style={{'padding':'.4rem', 'textAlign':'left', 'fontFamily':'monospace' }} >
         <div style={{'minHeight':'30rem', 'height':'100%', 'backgroundColor':'#1D292D', 'padding':'1rem', 'color':'cornsilk', 'fontFamily':'PT monospace', 'fontSize':'1.4rem'}}>
-          {/*<Cell size={12}>*/}
-            {/*<div className="md-text-container">*/}
-              {/*<textarea>*/}
-                {/*Interpreter*/}
-                {/*{ this.props.emitContent.includes('console.log') ? 'see console' : typeof(output) === 'undefined' ? 'undefined' : output.toString() }*/}
                 { typeof(output) === 'undefined' ? 'output undefined' : '=> ' + output.toString() }
-
-
-              {/*</textarea>*/}
-            {/*</div>*/}
-          {/*</Cell>*/}
         </div>
       </div>
 
     )
   }       
-
 }
 
 const mapStateToProps = state => {

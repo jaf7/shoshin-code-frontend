@@ -19,7 +19,6 @@ class Editor extends Component {
 
   componentDidMount() {
     if ( this.props.loggedIn ) {
-      // this.props.setExerciseId(this.props.exerciseId)
       this.props.getSessionContent(this.props.userId, this.props.exerciseId)
       updateKey++
       this.forceUpdate()
@@ -27,17 +26,12 @@ class Editor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
-      if ( this.props.sessionContent !== nextProps.sessionContent ) {
-        console.log('sessionContent: ', nextProps.sessionContent)
-      }
-
+    if ( this.props.sessionContent !== nextProps.sessionContent ) {
+      console.log('sessionContent: ', nextProps.sessionContent)
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // return !this.props.loggedIn ? false : nextProps.sessionLoaded !== this.props.sessionLoaded ? true : false
-    // return nextProps.sessionLoaded !== this.props.sessionLoaded ? true : false
-    // return nextProps.exerciseId !== this.props.exerciseId ? true : false
     return nextProps.sessionContent !== this.props.sessionContent ? true : false
 
   }
@@ -46,14 +40,7 @@ class Editor extends Component {
     this.props.teardownSession()
   }
 
-  keyListener = (e) => {
-    // console.log(`e keys ${Object.keys(e)}`)
-  }
-
   handleChange = ( newValue ) => {
-    // console.log('---------------- 1) handleChange newValue --------------')
-    // console.log( newValue )
-    // console.log('---------------- 1) handleChange newValue --------------')
     this.props.updateContent( newValue )
     this.props.generateEdit( newValue, editorId )
   }
@@ -70,59 +57,35 @@ class Editor extends Component {
   }
 
   render() {
-    this.isReadOnlyMode() ? console.log('READ ONLY') : console.log('NOT READ ONLY')
-    const readOnlyState = this.isReadOnlyMode() 
+    // this.isReadOnlyMode() ? console.log('READ ONLY') : console.log('NOT READ ONLY')
+    const readOnlyState = this.isReadOnlyMode()
 
     return(
-      <div id={editorId} style={{'height':'100%', 'width':'100%'}} onKeyUp={this.keyListener} key={updateKey} >
+      <div id={editorId} style={{'height':'100%', 'width':'100%'}} key={updateKey} >
         <ActionCable
           channel={{ channel: 'EditsChannel' }}
           onReceived={ data => {
-            // console.log('---------------- 3) received data --------------')
-            // console.log( data.edit )
-            // console.log('---------------- 3) received data --------------')
             this.handleReceivedEditStream( data.edit )
           }}
         />
-      
-        { this.isReadOnlyMode() ?
-          <AceEditor
-            readOnly={true}
-            mode="javascript"
-            theme="dawn"
-            fontSize={15}
-            highlightActiveLine={true}
-            value={this.props.sessionContent}
-            onChange={null}
-            debounceChangePeriod={200}
-            name={editorId}
-            width="auto"
-            commands={[
-              {
-                name: 'sendCode',
-                bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
-                exec: () => { this.props.emitContent(this.props.currentContent) }
-              }]}
-          />
-          :
-          <AceEditor
-            mode="javascript"
-            theme="dawn"
-            fontSize={15}
-            highlightActiveLine={true}
-            value={this.props.sessionContent}
-            onChange={this.handleChange}
-            debounceChangePeriod={200}
-            name={editorId}
-            width="auto"
-            commands={[
-              {
-                name: 'sendCode',
-                bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
-                exec: () => { this.props.emitContent(this.props.currentContent) }
-              }]}
-          />
-        }
+        <AceEditor
+          readOnly={ readOnlyState }
+          mode="javascript"
+          theme="dawn"
+          fontSize={15}
+          highlightActiveLine={true}
+          value={this.props.sessionContent}
+          onChange={ !readOnlyState ? this.handleChange : null }
+          debounceChangePeriod={200}
+          name={editorId}
+          width="auto"
+          commands={[
+            {
+              name: 'sendCode',
+              bindKey: {win: 'Ctrl-Enter', mac: 'Command-Enter'},
+              exec: () => { this.props.emitContent(this.props.currentContent) }
+            }]}
+        />
       </div>
     )
   }

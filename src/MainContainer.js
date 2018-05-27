@@ -52,11 +52,7 @@ class MainContainer extends Component {
   }
 
   shareSession = () => {
-    // let url = '\/\/ ' + window.location.href.concat('?readonly')
     let url = window.location.href.concat('?readonly')
-    // let text = '\r\n\/\/ SHARE URL, SLACK IT OUT:\r\n'
-    // let urlText = text.concat(url)
-    // this.props.shareSessionUrl( urlText )
     this.writeToClipboard( url )
   }
 
@@ -89,11 +85,13 @@ class MainContainer extends Component {
               primaryText="Save Session"
               leftIcon={<MaterialIcon icon="save" color={colorPallet.blueGrey._500}/>}
               onClick={this.props.loggedIn ? this.saveSession : null}
+              key={'listItemSave'}
             />,
             <ListItem
               primaryText="Share Session"
               leftIcon={<MaterialIcon icon="share" color={colorPallet.blueGrey._500} />}
               onClick={this.shareSession}
+              key={'listItemShare'}
             />
           ]
 

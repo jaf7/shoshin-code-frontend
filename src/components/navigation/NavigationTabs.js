@@ -18,12 +18,8 @@ class NavigationTabs extends Component {
           centered={true}
           mobile={false}
         >
-          <div>
-            <Tab component={ExerciseChooserLink} id="exercise-chooser-tab" label="Exercises" className="nav-tab" ></Tab>
-          </div>
-          <div>
-            <Tab component={DefaultExerciseLink} id="current-exercise-tab" label="Code It" className="nav-tab" ></Tab>
-          </div>
+          <Tab component={ExerciseChooserLink} id="exercise-chooser-tab" label="Exercises" className="nav-tab" ></Tab>
+          <Tab component={DefaultExerciseLink} id="current-exercise-tab" label="Code It" className="nav-tab" ></Tab>
         </Tabs>
 
     )
