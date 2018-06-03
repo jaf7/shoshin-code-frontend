@@ -18,10 +18,25 @@ class Editor extends Component {
   constructor() {
     super()
     this.state = { 
-      sessionId: '',
-      editorId: ''
+      sessionId: this.getSessionId(),
+      editorId: uuid()
     }
+    this.writeShareUrlToClipboard(this.state.sessionId)
   }
+
+  /* 
+  Should be doing this in constructor
+  TODO: research lifecycle methods in ES6+
+  https://babeljs.io/blog/2015/06/07/react-on-es6-plus
+  */
+  // componentWillMount() {
+  //   const sessionId = this.getSessionId()
+  //   const editorId = uuid()
+  //   this.setState({
+  //     sessionId: sessionId,
+  //     editorId: editorId
+  //   }, this.writeShareUrlToClipboard(this.state.sessionId) )
+  // }
 
   componentDidMount() {
     if ( this.props.loggedIn ) {
@@ -64,7 +79,6 @@ class Editor extends Component {
   }
 
   handleReceivedEditStream = ( data ) => {
-    console.log('### sessionId in receivedEditStream ### ', data.session)
     data.sender_id !== this.state.editorId ? this.props.addSocketResponse( data.text ) : null
   }
 
@@ -74,19 +88,12 @@ class Editor extends Component {
 
   render() {
     const readOnly = this.isReadOnlyMode()
-    const sessionId = this.getSessionId()
-    const editorId = uuid()
-    console.log('### editorId in render ### ', editorId)
-    this.setState({
-      sessionId: sessionId,
-      editorId: editorId
-    }, this.writeShareUrlToClipboard(this.state.sessionId) )
 
     return(
       <div id={this.state.editorId} style={{'height':'100%', 'width':'100%'}} key={updateKey} >
         <ActionCable
           ref='editsChannel'
-          channel={{ channel: 'EditsChannel', session: `${sessionId}` }}
+          channel={{ channel: 'EditsChannel', session: `${this.state.sessionId}` }}
           onReceived={ data => {
             this.handleReceivedEditStream( data )
           }}
