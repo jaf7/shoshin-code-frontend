@@ -14,7 +14,7 @@ import Logout from './components/auth/Logout'
 import HomeButton from './components/HomeButton'
 import UserBadge from './components/UserBadge'
 
-import { saveSessionContent, getUserExerciseCollection, addShareUrlToSession } from './actions/actions'
+import { saveSessionContent, getUserExerciseCollection } from './actions/actions'
 
 const styles = {
   content: { textAlign: 'left', minHeight: 'unset', height: 'fit-content' }
@@ -51,26 +51,29 @@ class MainContainer extends Component {
     updateKey++
   }
 
-  shareSession = () => {
-    let url = window.location.href.concat('?readonly')
-    this.writeToClipboard( url )
-  }
+  // shareSession = () => {
+  //   let url = window.location.href.concat(`?readonly&uuid=${this.props.sessionId}`)
+  //   console.log('@@@@@@@@ sessionId in shareSession @@@@@@@@')
+  //   console.log( this.props.sessionId )
+  //   console.log('@@@@@@@@ sessionId in shareSession @@@@@@@@')
+  //   this.writeToClipboard( url )
+  // }
 
-  writeToClipboard = url => {
-    navigator.clipboard.writeText(url)
-    .then(() => {
-      this.showClipboardDialog(url)
-    })
-    .catch(err => {
-      // If user denies clipboard permissions
-      console.error('Could not copy url: ', err)
-    })
-  }
+  // writeToClipboard = url => { 
+  //   navigator.clipboard.writeText(url)
+  //   .then(() => {
+  //     this.showClipboardDialog(url)
+  //   })
+  //   .catch(err => {
+  //     // If user denies clipboard permissions
+  //     console.error('Could not copy url: ', err)
+  //   })
+  // }
   
   showClipboardDialog = (url) => {
     this.setState({
       clipboardDialogVisible: true
-    }, console.log('copied to clipboard: ', url))
+    })
   }
 
   hideClipboardDialog = () => {
@@ -90,7 +93,7 @@ class MainContainer extends Component {
             <ListItem
               primaryText="Share Session"
               leftIcon={<MaterialIcon icon="share" color={colorPallet.blueGrey._500} />}
-              onClick={this.shareSession}
+              onClick={this.showClipboardDialog}
               key={'listItemShare'}
             />
           ]
@@ -145,15 +148,15 @@ const mapStateToProps = state => {
     exerciseId: state.exercises.currentId,
     currentSlug: state.exercises.currentSlug,
     sessionContent: state.user.editorSession.content,
-    currentContent: state.editor.currentContent
+    currentContent: state.editor.currentContent,
+    sessionId: state.user.editorSession.uuid
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     saveSessionContent: saveSessionContent,
-    getExerciseCollection: getUserExerciseCollection,
-    shareSessionUrl: addShareUrlToSession
+    getExerciseCollection: getUserExerciseCollection
   }, dispatch)
 }
 

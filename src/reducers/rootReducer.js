@@ -6,8 +6,9 @@ const defaultState = {
     exerciseCollection: [],
     exerciseCollectionLoaded: false,
     editorSession: {
+      uuid: 'unauthorized',
       loaded: false,
-      content: "\/\/ Welcome! I hope you have as much fun practicing your coding skills with\r\n\/\/ this tool as I\'m having building it! If you\'re using it to practice,\r\n\/\/ you already know that coding is an iterative process. In that spirit,\r\n\/\/ this editor-interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let] while coding here. You\'ll have to stick\r\n\/\/ with [var] - for now ... ES6 will be in the next version!\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. :( It will be!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER"
+      content: "\/\/ Welcome. If you\'re using Shoshin to practice,\r\n\/\/ you probably realize that writing code is an iterative process. In that spirit,\r\n\/\/ this editor/interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let], only [var]. Interpreting ES6 will be the next step for Shoshin.\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. Thank you for trying Shoshin!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER"
     },
     error: {
       status: false,
@@ -78,11 +79,11 @@ export function rootReducer( state = defaultState, action ) {
         user: { ...state.user,
           editorSession: { 
             loaded: true,
-            content: action.payload.editorContent ? action.payload.editorContent : "\/\/ Welcome! I hope you have as much fun practicing your coding skills with\r\n\/\/ this tool as I\'m having building it! If you\'re using it to practice,\r\n\/\/ you already know that coding is an iterative process. In that spirit,\r\n\/\/ this editor-interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let] while coding here. You\'ll have to stick\r\n\/\/ with [var] - for now ... ES6 will be in the next version!\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. :( It will be!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER"
+            content: action.payload.editorContent ? action.payload.editorContent : "\/\/ Welcome. If you\'re using Shoshin to practice,\r\n\/\/ you probably realize that writing code is an iterative process. In that spirit,\r\n\/\/ this editor/interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let], only [var]. Interpreting ES6 will be the next step for Shoshin.\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. Thank you for trying Shoshin!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER"
           }
         },
         editor: { ...state.editor,
-          currentContent: action.payload.editorContent ? action.payload.editorContent : "\/\/ Welcome! I hope you have as much fun practicing your coding skills with\r\n\/\/ this tool as I\'m having building it! If you\'re using it to practice,\r\n\/\/ you already know that coding is an iterative process. In that spirit,\r\n\/\/ this editor-interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let] while coding here. You\'ll have to stick\r\n\/\/ with [var] - for now ... ES6 will be in the next version!\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. :( It will be!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER",
+          currentContent: action.payload.editorContent ? action.payload.editorContent : "\/\/ Welcome. If you\'re using Shoshin to practice,\r\n\/\/ you probably realize that writing code is an iterative process. In that spirit,\r\n\/\/ this editor/interpreter is Alpha, and is ES5 only. This means you won\'t\r\n\/\/ be able to use [const] or [let], only [var]. Interpreting ES6 will be the next step for Shoshin.\r\n\r\n\/\/ CMD-ENTER TO EVALUATE YOUR CODE\r\n\/\/ console logging expressions or primitives other than strings is not yet\r\n\/\/ implemented. Thank you for trying Shoshin!\r\n\r\nconsole.log(\'Hello World!\')\r\n\/\/ type CMD-ENTER",
           emitContent: state.editor.emitContent
         }
       }
@@ -95,7 +96,6 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'APPEND_SHARE_URL_TO_SESSION_CONTENT':
-      console.log('share url: ', action.payload.urlText)
       return { ...state,
         user: { ...state.user,
           editorSession: { ...state.user.editorSession,
@@ -113,6 +113,17 @@ export function rootReducer( state = defaultState, action ) {
       return { ...state,
         exercises: { ...state.exercises,
           currentId: action.payload.id
+        }
+      }
+    case 'SET_CURRENT_SESSION_ID':
+      console.log('###### CURRENT SESSION UUID (reducer) ######')
+      console.log(action.payload.id)
+      console.log('###### CURRENT SESSION UUID ######')
+      return { ...state,
+        user: { ...state.user,
+          editorSession: { ...state.user.editorSession,
+            uuid: action.payload.id
+          }
         }
       }
     case 'SET_CURRENT_EXERCISE_SLUG':

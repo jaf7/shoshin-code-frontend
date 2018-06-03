@@ -81,6 +81,13 @@ export const setExerciseId = (exerciseId) => dispatch => {
   })
 }
 
+export const setSessionId = (sessionId) => dispatch => {
+  dispatch({
+    type: 'SET_CURRENT_SESSION_ID',
+    payload: {id: sessionId}
+  })
+}
+
 export const setExerciseSlug = (slug) => dispatch => {
   dispatch({
     type: 'SET_CURRENT_EXERCISE_SLUG',
@@ -102,8 +109,8 @@ export const emitEditorContent = content => {
   }
 }
 
-export const generateEditStream = ( newValue, editorId ) => dispatch => {
-  adapter.data.createEdit( {newValue, editorId} ).then(data => {
+export const generateEditStream = ( newValue, editorId, sessionId ) => dispatch => {
+  adapter.data.createEdit( {newValue, editorId, sessionId} ).then(data => {
   })
 }
 
@@ -114,12 +121,12 @@ export const updateSessionWithSocketResponse = ( text ) => dispatch => {
   })
 }
 
-export const addShareUrlToSession = ( shareUrlText ) => dispatch => {
-  dispatch({
-    type: 'APPEND_SHARE_URL_TO_SESSION_CONTENT',
-    payload: {urlText: shareUrlText}
-  })
-}
+// export const addShareUrlToSession = ( shareUrlText ) => dispatch => {
+//   dispatch({
+//     type: 'APPEND_SHARE_URL_TO_SESSION_CONTENT',
+//     payload: {urlText: shareUrlText}
+//   })
+// }
 
 export const toggleIsWelcomeView = () => {
   return { type: 'TOGGLE_IS_WELCOME_VIEW' }

@@ -37,14 +37,14 @@ class ExerciseContainer extends Component {
               <MediaQuery minDeviceWidth={768}>
                 {(matches) => {
                   if (matches) {
-                    console.log('######## MATCHES ########')
+                    // console.log('######## MATCHES ########')
                     return (
                       <div style={styles.editorWrapper} className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--8" >
                         { this.props.exercise ? <Editor userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor/> }
                       </div>
                     )
                   } else {
-                    console.log('######## NO MATCH ########')
+                    // console.log('######## NO MATCH ########')
                     return (
                       <div style={styles.editorWrapper} className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12" >
                         { this.props.exercise ? <Editor userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor/> }
