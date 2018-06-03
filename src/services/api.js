@@ -53,12 +53,19 @@ const removeExerciseFromCollection = data => {
 }
 
 const retrieveSessionContent = data => {
-  return fetch(`${API_ROOT}/current_session`, {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify( data )
+  return fetch(`${API_ROOT}/current_session?userId=${data.userId}&exerciseId=${data.exerciseId}`, {
+    method: 'GET',
+    headers: HEADERS
   }).then(res => res.json())
 }
+
+// const retrieveSessionContent = data => {
+//   return fetch(`${API_ROOT}/current_session`, {
+//     method: 'POST',
+//     headers: HEADERS,
+//     body: JSON.stringify( data )
+//   }).then(res => res.json())
+// }
 
 const updateSessionContent = data => {
   return fetch(`${API_ROOT}/current_session`, {
@@ -68,13 +75,14 @@ const updateSessionContent = data => {
   }).then(res => res.json())
 }
 
-const createEdit = data => {
-  return fetch(`${API_ROOT}/edits`, {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify( data )
-  })
-}
+// Keep for maybe implementing edits history
+// const createEdit = data => {
+//   return fetch(`${API_ROOT}/edits`, {
+//     method: 'POST',
+//     headers: HEADERS,
+//     body: JSON.stringify( data )
+//   })
+// }
 
 export const adapter = {
   auth: {
@@ -85,7 +93,7 @@ export const adapter = {
     retrieveExercises,
     retrieveSessionContent,
     updateSessionContent,
-    createEdit,
+    // createEdit,
     retrieveUserExerciseCollection,
     removeExerciseFromCollection
   }

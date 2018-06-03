@@ -136,8 +136,9 @@ export function rootReducer( state = defaultState, action ) {
         },
         user: { ...state.user,
           editorSession: { ...state.user.editorSession,
+            uuid: 'unauthorized',
             loaded: false,
-            content: 'DEFAULT STATE - EMPTY EDITOR SESSION'
+            content: 'TEARDOWN: EMPTY EDITOR SESSION'
           }
         }
       }

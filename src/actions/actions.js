@@ -110,8 +110,12 @@ export const emitEditorContent = content => {
 }
 
 export const generateEditStream = ( newValue, editorId, sessionId ) => dispatch => {
-  adapter.data.createEdit( {newValue, editorId, sessionId} ).then(data => {
-  })
+  console.log('#### genEditStream ####')
+  console.log('ed_id: ', editorId)
+  console.log('se_id: ', sessionId)
+  console.log('newVal: ', newValue.substring(0,10) + '...')
+  // adapter.data.createEdit( {newValue, editorId, sessionId} ).then(data => {
+  // })
 }
 
 export const updateSessionWithSocketResponse = ( text ) => dispatch => {

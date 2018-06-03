@@ -59,7 +59,7 @@ class Editor extends Component {
 
   handleChange = ( newValue ) => {
     this.props.updateContent( newValue )
-    this.props.generateEdit( newValue, this.state.editorId, this.state.sessionId ) // would need sessionId here to match broadcast channel
+    this.props.generateEdit( newValue, this.state.editorId, this.state.sessionId )
     this.refs.editsChannel.send( {text: newValue, sender_id: this.state.editorId, session: this.state.sessionId} )
   }
 
