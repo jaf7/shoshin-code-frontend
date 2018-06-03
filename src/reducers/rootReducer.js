@@ -116,9 +116,6 @@ export function rootReducer( state = defaultState, action ) {
         }
       }
     case 'SET_CURRENT_SESSION_ID':
-      console.log('###### CURRENT SESSION UUID (reducer) ######')
-      console.log(action.payload.id)
-      console.log('###### CURRENT SESSION UUID ######')
       return { ...state,
         user: { ...state.user,
           editorSession: { ...state.user.editorSession,

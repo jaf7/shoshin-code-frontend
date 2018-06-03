@@ -15,10 +15,10 @@ class Repl extends Component {
     }
   }
 
+  // (Trying vm.js)
   // handleRun = (content) => {
   //   const sandbox = { console: console }
   //   const context = vm.createContext(sandbox)
-
   //   try {
   //   vm.runInContext(`${content}`, context);
   //   } catch (err) {
