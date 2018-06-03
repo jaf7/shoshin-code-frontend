@@ -37,12 +37,19 @@ const retrieveExercises = () => {
 }
 
 const retrieveUserExerciseCollection = data => {
-  return fetch(`${API_ROOT}/user_exercises`, {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify( data )
+  return fetch(`${API_ROOT}/user_exercises?userId=${data.userId}`, {
+    method: 'GET',
+    headers: HEADERS
   }).then(res => res.json())
 }
+
+// const retrieveUserExerciseCollection = data => {
+//   return fetch(`${API_ROOT}/user_exercises`, {
+//     method: 'POST',
+//     headers: HEADERS,
+//     body: JSON.stringify( data )
+//   }).then(res => res.json())
+// }
 
 const removeExerciseFromCollection = data => {
   return fetch(`${API_ROOT}/remove_session`, {
