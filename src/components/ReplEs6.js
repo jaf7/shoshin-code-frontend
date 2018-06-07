@@ -64,12 +64,29 @@ class Repl extends Component {
   }
 
   render() {
+    const styles = {
+      wrapper: {
+        padding: '.4rem',
+        textAlign: 'left'
+      },
+      replDiv: {
+        whiteSpace: 'pre-wrap',
+        minHeight: '30rem',
+        height: '100%',
+        backgroundColor: '#1D292D',
+        padding: '1rem',
+        color: '#00E710',
+        fontFamily: 'PT monospace',
+        fontSize: '1.2rem'
+      }
+    }
+
     const output = this.handleRun(this.props.emittedContent)
 
     return (
 
-      <div className="repl-cell md-paper md-paper--1 md-card md-background--card md-cell md-cell--4" style={{'padding':'.4rem', 'textAlign':'left' }} >
-        <div style={{'whiteSpace':'pre-wrap','minHeight':'30rem', 'height':'100%', 'backgroundColor':'#1D292D', 'padding':'1rem', 'color':'#00E710', 'fontFamily':'PT monospace', 'fontSize':'1.2rem'}}>
+      <div className="repl-cell md-paper md-paper--1 md-card md-background--card md-cell md-cell--4" style={styles.wrapper} >
+        <div style={styles.replDiv}>
                 { typeof(output) === 'undefined' ? 'output undefined' : '=> ' + output }
         </div>
       </div>
