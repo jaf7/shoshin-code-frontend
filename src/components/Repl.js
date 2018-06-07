@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// import vm from 'vm.js'
-// const Vm = require('vm.js') 
-// const vm = new Vm()
-
+import Vm from 'vm.js'
 import Interpreter from 'js-interpreter'
 
 class Repl extends Component {
@@ -15,24 +12,21 @@ class Repl extends Component {
     }
   }
 
-  // (Trying vm.js)
-  // handleRun = (content) => {
-  //   const sandbox = { console: console }
-  //   const context = vm.createContext(sandbox)
-  //   try {
-  //   vm.runInContext(`${content}`, context);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
+  vmInt = () => {
+    const vm = new Vm()
+    vm.realm.global.console = {
+      log: (args) => console.log(args)
+    }
+    console.log('++++++++++ vm.js ++++++++++')
+    console.log( vm.eval('console.log("CONSOLE LOGGING WORKING")') )
+    console.log('++++++++++ vm.js ++++++++++')
+  }
 
   initApi = (interpreter, scope) => {
-
     var alertWrapper = function(text) {
       return alert(arguments.length ? text : '')
     }
     interpreter.setProperty( scope, 'alert', interpreter.createNativeFunction(alertWrapper) )
-
     // interpreter.nativeToPseudo({
     //   log(...args) { console.log(...args) }
     // })
@@ -43,6 +37,9 @@ class Repl extends Component {
   }
 
   handleRun = ( content, initFunction ) => {
+
+    this.vmInt()
+
     let emittedCode = content
 
     if ( emittedCode.includes('console.log') ) {

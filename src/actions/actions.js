@@ -109,11 +109,12 @@ export const emitEditorContent = content => {
   }
 }
 
-export const generateEditStream = ( newValue, editorId, sessionId ) => dispatch => {
-  console.log('#### genEditStream ####')
-  console.log('ed_id: ', editorId)
-  console.log('se_id: ', sessionId)
-  console.log('newVal: ', newValue.substring(newValue.length - 10) + '...')
+export const addToEdits = ( newValue, editorId, sessionId ) => dispatch => {
+  localStorage.setItem(`${sessionId}`, `${newValue}`)
+  // console.log('#### lS in addToEdits ####')
+  // const content = localStorage.getItem(`${sessionId}`)
+  // console.log(content)
+  // console.log('#### lS in addToEdits ####')
   // adapter.data.createEdit( {newValue, editorId, sessionId} ).then(data => {
   // })
 }

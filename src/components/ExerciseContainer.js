@@ -6,7 +6,8 @@ import MediaQuery from 'react-responsive'
 
 import Loader from 'react-loader-spinner'
 import Editor from './Editor'
-import Repl from './Repl' 
+import Repl from './Repl'
+import ReplEs6 from './ReplEs6'
 import Description from './Description'
 
 const styles = {
@@ -55,7 +56,7 @@ class ExerciseContainer extends Component {
               </MediaQuery>
                               
 
-              <Repl />
+              <ReplEs6 />
 
             </Grid>
           </div>

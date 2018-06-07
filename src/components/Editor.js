@@ -2,7 +2,7 @@ import React, { Component, PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { updateEditorContent, emitEditorContent, getSessionContent, setExerciseId, setSessionId, teardownSession, generateEditStream, updateSessionWithSocketResponse } from '../actions/actions'
+import { updateEditorContent, emitEditorContent, getSessionContent, setExerciseId, setSessionId, teardownSession, addToEdits, updateSessionWithSocketResponse } from '../actions/actions'
 import { ActionCable } from 'react-actioncable-provider'
 import uuid from 'uuid/v1'
 import clipboard from 'clipboard-polyfill'
@@ -21,7 +21,7 @@ class Editor extends Component {
       sessionId: this.getSessionId(),
       editorId: uuid()
     }
-    this.writeShareUrlToClipboard(this.state.sessionId)
+    // this.writeShareUrlToClipboard(this.state.sessionId)
   }
 
   /* 
@@ -41,6 +41,7 @@ class Editor extends Component {
   componentDidMount() {
     if ( this.props.loggedIn ) {
       this.props.getSessionContent(this.props.userId, this.props.exerciseId)
+      this.writeShareUrlToClipboard(this.state.sessionId)
       updateKey++
       this.forceUpdate()
     }
@@ -69,12 +70,12 @@ class Editor extends Component {
     let url = window.location.href.concat(`?readonly&uuid=${ sessionId }`)
     clipboard.writeText( url )
     .then(() => console.log('copied to clipboard: ', url))
-    .catch( err => console.error('Could not copy url: ', err))
+    .catch( err => console.error('Could not copy url. URL: ', url, err))
   }
 
   handleChange = ( newValue ) => {
     this.props.updateContent( newValue )
-    this.props.generateEdit( newValue, this.state.editorId, this.state.sessionId )
+    this.props.addEdit( newValue, this.state.editorId, this.state.sessionId )
     this.refs.editsChannel.send( {text: newValue, sender_id: this.state.editorId, session: this.state.sessionId} )
   }
 
@@ -99,15 +100,17 @@ class Editor extends Component {
           }}
         />
         <AceEditor
+          name={this.state.editorId}
           readOnly={ readOnly }
           mode="javascript"
-          theme="dawn"
-          fontSize={15}
-          highlightActiveLine={true}
+          
           value={this.props.sessionContent}
           onChange={ !readOnly ? this.handleChange : null }
           debounceChangePeriod={200}
-          name={this.state.editorId}
+          blockScrolling='Infinity'
+          highlightActiveLine={true}
+          theme="dawn"
+          fontSize={15}
           width="auto"
           commands={[
             {
@@ -138,7 +141,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     updateContent: newValue => dispatch( updateEditorContent(newValue) ),
     emitContent: content => dispatch( emitEditorContent(content) ),
-    generateEdit: generateEditStream,
+    addEdit: addToEdits,
     addSocketResponse: updateSessionWithSocketResponse,
     getSessionContent: getSessionContent,
     setExerciseId: setExerciseId,
