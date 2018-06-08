@@ -3739,6 +3739,28 @@ h3.md-card-title--title.md-text--secondary {
 section.md-card-text {
   padding-bottom: 4rem; }
 
+.cardOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background: rgba(255, 255, 255, 0);
+  transition: .2s ease-in-out;
+  background: #000; }
+
+.overlayButton {
+  display: flex;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  margin: 0 1rem;
+  justify-content: center; }
+
 .markdown {
   margin: 1rem; }
 
