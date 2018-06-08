@@ -55,7 +55,7 @@ class LoginSignup extends PureComponent {
           defaultVisibleTransitionable={false}
           onHide={this.hide}
           actions={actions}
-          title="Login"
+          title="Login or Signup"
         >
           <TextField
             id="login-action-username-field"

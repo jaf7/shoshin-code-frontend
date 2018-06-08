@@ -103,7 +103,6 @@ class Editor extends Component {
           name={this.state.editorId}
           readOnly={ readOnly }
           mode="javascript"
-          
           value={this.props.sessionContent}
           onChange={ !readOnly ? this.handleChange : null }
           debounceChangePeriod={200}
@@ -112,6 +111,7 @@ class Editor extends Component {
           theme="dawn"
           fontSize={15}
           width="auto"
+          wrapEnabled={true}
           commands={[
             {
               name: 'sendCode',

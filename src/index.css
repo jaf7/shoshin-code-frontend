@@ -3710,6 +3710,9 @@ span.blue-background {
 section.md-dialog-content.md-dialog-content--padded {
   max-height: 20rem; }
 
+footer.md-dialog-footer.md-dialog-footer--inline {
+  justify-content: center; }
+
 #main-content {
   background-color: #edece6; }
 

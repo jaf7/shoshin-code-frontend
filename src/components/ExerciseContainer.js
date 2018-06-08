@@ -54,7 +54,6 @@ class ExerciseContainer extends Component {
                   }
                 }}
               </MediaQuery>
-                              
 
               <ReplEs6 />
 

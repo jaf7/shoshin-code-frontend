@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Vm from 'vm.js'
-import Interpreter from 'js-interpreter'
 import { debugout } from '../utils/debugout'
 
 const styles = {
