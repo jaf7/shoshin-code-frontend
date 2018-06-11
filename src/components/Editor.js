@@ -89,6 +89,8 @@ class Editor extends Component {
 
   render() {
     const readOnly = this.isReadOnlyMode()
+    console.log('sesssionId: ', this.state.sessionId)
+    console.log('editorId: ', this.state.editorId)
 
     return(
       <div id={this.state.editorId} style={{'height':'100%', 'width':'100%'}} key={updateKey} >
