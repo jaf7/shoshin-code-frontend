@@ -20,8 +20,6 @@ const styles = {
   content: { textAlign: 'left', minHeight: 'unset', height: 'fit-content' }
 }
 
-let updateKey = 0
-
 class MainContainer extends Component {
   constructor () {
     super()
@@ -48,7 +46,6 @@ class MainContainer extends Component {
 
   saveSession = () =>  {
     this.props.saveSessionContent( this.props.userId, this.props.exerciseId, this.props.currentContent )
-    updateKey++
   }
 
   // shareSession = () => {
@@ -110,7 +107,7 @@ class MainContainer extends Component {
           toolbarTitle=" "
           toolbarChildren={<NavigationTabs/>}
           toolbarActions={this.rightSideActions()}
-          drawerChildren={this.props.loggedIn ? <UserCollection key={updateKey} /> : null} 
+          drawerChildren={this.props.loggedIn ? <UserCollection /> : null} 
           onVisibilityChange={this.props.loggedIn ? this.getCollection : null}
         >
           <Switch>

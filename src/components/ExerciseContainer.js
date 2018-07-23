@@ -5,13 +5,13 @@ import { Grid, Cell, Paper } from 'react-md'
 import MediaQuery from 'react-responsive'
 
 import Loader from 'react-loader-spinner'
+import Description from './Description'
 import Editor from './Editor'
+// import Chat from  './Chat'
 import Repl from './Repl'
 import ReplEs6 from './ReplEs6'
-import Description from './Description'
 
 const styles = {
-  editorWrapper: { 'border':'.5rem solid white' },
   spinner: {
              left: '50%',
              top: '50%',
@@ -35,22 +35,15 @@ class ExerciseContainer extends Component {
             </Grid>
             <Grid className="exercise-grid" style={{'paddingTop':'0px'}} >
               
-              <MediaQuery minDeviceWidth={768}>
+              <MediaQuery minWidth={768}>
                 {(matches) => {
                   if (matches) {
-                    // console.log('######## MATCHES ########')
-                    return (
-                      <div style={styles.editorWrapper} className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--8" >
-                        { this.props.exercise ? <Editor userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor/> }
-                      </div>
-                    )
+                    console.log('matches: ', matches, '######## MATCHES ########')
+
+                    return this.props.exercise ? <Editor smallDeviceWidth={true} userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor smallDeviceWidth={true} />
                   } else {
-                    // console.log('######## NO MATCH ########')
-                    return (
-                      <div style={styles.editorWrapper} className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12" >
-                        { this.props.exercise ? <Editor userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor/> }
-                      </div>
-                    )
+                    console.log('######## NO MATCH ########')
+                    return this.props.exercise ? <Editor smallDeviceWidth={false} userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor smallDeviceWidth={false} />
                   }
                 }}
               </MediaQuery>

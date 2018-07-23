@@ -12,6 +12,14 @@ import 'brace/mode/javascript'
 import 'brace/theme/monokai'
 import 'brace/theme/dawn'
 
+const styles = {
+  editorDiv: {
+    'border': '.5rem solid white',
+    'height': '100%',
+    'width':'100%'
+  }
+}
+
 let updateKey = 0
 
 class Editor extends Component {
@@ -93,7 +101,7 @@ class Editor extends Component {
     console.log('editorId: ', this.state.editorId)
 
     return(
-      <div id={this.state.editorId} style={{'height':'100%', 'width':'100%'}} key={updateKey} >
+      <div id={this.state.editorId} style={styles.editorDiv} key={updateKey} className={"md-paper md-paper--1 md-card md-background--card " + (this.props.smallDeviceWidth ? 'md-cell--8' : 'md-cell--12')} >
         <ActionCable
           ref='editsChannel'
           channel={{ channel: 'EditsChannel', session: `${this.state.sessionId}` }}
@@ -135,7 +143,8 @@ const mapStateToProps = (state, ownProps) => {
     loggedIn: state.user.loggedIn,
     userId: state.user.id,
     exercise: ownProps.exercise,
-    exerciseId: ownProps.exerciseId
+    exerciseId: ownProps.exerciseId,
+    smallDeviceWidth: ownProps.smallDeviceWidth
   }
 }
 

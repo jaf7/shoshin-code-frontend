@@ -25,8 +25,7 @@ const mapStateToProps = ( state, ownProps ) => {
   return {
     exerciseCollection: state.user.exerciseCollection,
     exerciseCollectionLoaded: state.user.exerciseCollectionLoaded,
-    sessionLoaded: state.user.editorSession.loaded,
-    updateKey: ownProps.key
+    sessionLoaded: state.user.editorSession.loaded
   }
 }
 
