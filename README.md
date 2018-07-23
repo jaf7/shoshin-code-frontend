@@ -10,7 +10,9 @@ This app is born from a deep appreciation of online coding environments like [Re
 ➡️  &nbsp; Watch it [here](#)
 
 [![Watch demo](https://i.imgur.com/UrAkFo9.png)](#)
+&nbsp;
 <img src="https://i.imgur.com/0lC6aM3.png">
+&nbsp;
 <img src="https://i.imgur.com/z3TFN0B.png">
 
 ## Installation
