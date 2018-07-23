@@ -35,6 +35,7 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
  - [ ] Implement chat using Pusher Chatkit with WebSockets
  - [ ] Add read/write access toggling for 2nd party
  - [ ] Protect infinite loops
+ - [ ] Experiment with replacing VM.js interpreter with Node.js, inspired by [olydis](https://github.com/olydis/node-in-browser/blob/master/README.md)
 
 ## License
 
