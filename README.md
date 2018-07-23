@@ -2,7 +2,7 @@
 A coding practice and mentorship application that integrates coding exercises with an editor and repl, offers real-time session sharing across a network and session saving for any editor/exercise combination. Features ES6 evaluation & error handling, code highlighting, secure user authentication, WebSocket session streaming and exercises from the CodeWars API.
 
 ## Motivation
-This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). I wanted to use and offer to others a tool that combines the salient features of such environments with real-time session sharing to support mentorship and exercises in the spirit of code Katas. I wanted a clean, elegant experience with crisp interatctions that doesn't get in the way and lets the user focus on learning. 
+This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). I wanted to use and offer to others a tool that combines the salient features of such environments with real-time session sharing to support mentorship and exercises in the spirit of code Katas. I wanted a clean, elegant experience with crisp interactions that doesn't get in the way and lets the user focus on learning. 
 
 ## Demo
 ➡️  &nbsp; Use it [here](https://shoshin-code-frontend.herokuapp.com/)! (Feedback welcome! @janthonyfields)
@@ -36,7 +36,7 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
 ## To-do
  - [ ] Implement chat using Pusher Chatkit with WebSockets
  - [ ] Add read/write access toggling for 2nd party
- - [ ] Protect infinite loops
+ - [ ] Protect against infinite loops
  - [ ] Experiment with replacing VM.js interpreter with Node.js, inspired by [olydis](https://github.com/olydis/node-in-browser/blob/master/README.md)
 
  ### Backend
