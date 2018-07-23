@@ -1,5 +1,5 @@
 # Shoshin Code
-A coding practice and mentorship platform that integrates coding exercises with an editor and repl, offers real-time session sharing across a network and session saving for any editor/exercise combination. A SPA that features ES6 evaluation, code highlighting, secure user authentication, WebSocket session streaming and exercises from the CodeWars API.
+A coding practice and mentorship application that integrates coding exercises with an editor and repl, offers real-time session sharing across a network and session saving for any editor/exercise combination. Features ES6 evaluation & error handling, code highlighting, secure user authentication, WebSocket session streaming and exercises from the CodeWars API.
 
 ## Motivation
 This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). A way of thinking, creating and building that started with the Unix time sharing systems of old is coming into its own in an incredible way: collaborative work across the network is how we're building the future. I find this way of building fascinating and want to understand it better. This is the first iteration of my effort in this regard. It's intended to be a learning experience not only in its building but in its use.
