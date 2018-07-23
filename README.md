@@ -4,7 +4,7 @@ A coding practice and mentorship platform that integrates coding exercises with 
 ## Motivation
 This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). A way of thinking, creating and building that started with the Unix time sharing systems of old is coming into its own in an incredible way: collaborative work across the network is how we're building the future. I find this way of building fascinating and want to understand it better. This is the first iteration of my effort in this regard. It's intended to be a learning experience not only in its building but in its use.
 
-# Demo
+## Demo
 ➡️  &nbsp; Use it [here](https://shoshin-code-frontend.herokuapp.com/)
 
 ➡️  &nbsp; Watch it [here](#)
