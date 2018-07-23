@@ -2,7 +2,7 @@
 A coding practice and mentorship application that integrates coding exercises with an editor and repl, offers real-time session sharing across a network and session saving for any editor/exercise combination. Features ES6 evaluation & error handling, code highlighting, secure user authentication, WebSocket session streaming and exercises from the CodeWars API.
 
 ## Motivation
-This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). A way of thinking, creating and building that started with the Unix time sharing systems of old is coming into its own in an incredible way: collaborative work across the network is how we're building the future. I find this way of building fascinating and want to understand it better. This is the first iteration of my effort in this regard. It's intended to be a learning experience not only in its building but in its use.
+This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). I wanted to use and offer to others a tool that combines the salient features of such environments with real-time session sharing to support mentorship and exercises in the spirit of code Katas. I wanted a clean, elegant experience with crisp interatctions that doesn't get in the way and lets the user focus on learning. 
 
 ## Demo
 ➡️  &nbsp; Use it [here](https://shoshin-code-frontend.herokuapp.com/)
