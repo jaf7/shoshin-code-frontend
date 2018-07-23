@@ -14,6 +14,8 @@ This app is born from a deep appreciation of online coding environments like [Re
 <img src="https://i.imgur.com/0lC6aM3.png">
 <br></br>
 <img src="https://i.imgur.com/z3TFN0B.png">
+<br></br>
+<img src="https://i.imgur.com/mOIRbKO.png">
 
 ## Installation
 Nothing to install. Shoshin runs in your browser, including the sandboxed JavaScript interpreter.
