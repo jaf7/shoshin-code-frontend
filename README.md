@@ -5,9 +5,9 @@ A coding practice and mentorship application that integrates coding exercises wi
 This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). I wanted to use and offer to others a tool that combines the salient features of such environments with real-time session sharing to support mentorship and exercises in the spirit of code Katas. I wanted a clean, elegant experience with crisp interatctions that doesn't get in the way and lets the user focus on learning. 
 
 ## Demo
-➡️  &nbsp; Use it [here](https://shoshin-code-frontend.herokuapp.com/)
+➡️  &nbsp; Use it [here](https://shoshin-code-frontend.herokuapp.com/)! (Feedback welcome! @janthonyfields)
 
-➡️  &nbsp; Watch it [here](#)
+➡️  &nbsp; Watch a 2 minute demo [here](https://youtu.be/ZMLLfiwjtxo)
 
 [![Watch demo](https://i.imgur.com/UrAkFo9.png)](#)
 <br></br>
