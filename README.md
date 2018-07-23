@@ -24,7 +24,7 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
 * [React](https://reactjs.org/)
 * [Redux](https://github.com/reduxjs/redux/blob/master/README.md)
 * [React Router](https://reacttraining.com/react-router/)
-* [Rails](https://rubyonrails.org/) RESTful API with [PostgreSQL](https://www.postgresql.org/) ([Rails Backend Repo](https://github.com/jaf7/shoshin-code-backend))
+* [Rails](https://rubyonrails.org/) RESTful API with [PostgreSQL](https://www.postgresql.org/) (Rails backend repo [here](https://github.com/jaf7/shoshin-code-backend))
 * [ActionCable](http://guides.rubyonrails.org/action_cable_overview.html) WebSockets with [Redis Pub/Sub](https://redis.io/topics/pubsub)
 * [JWT](https://jwt.io/) / [ruby-jwt](https://github.com/jwt/ruby-jwt/blob/master/README.md) / [Bcrypt](https://github.com/codahale/bcrypt-ruby/blob/master/README.md) hashing
 * [Ace Editor](https://github.com/ajaxorg/ace/blob/master/Readme.md)
@@ -39,6 +39,9 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
  - [ ] Protect infinite loops
  - [ ] Experiment with replacing VM.js interpreter with Node.js, inspired by [olydis](https://github.com/olydis/node-in-browser/blob/master/README.md)
 
+ ### Backend
+ The Rails backend repo is [here](https://github.com/jaf7/shoshin-code-backend)
+<br></br>
 ## License
 
 The MIT License (MIT)
