@@ -37,8 +37,9 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
  - [ ] Refactor custom styling to [SASS 7-1 pattern](https://gist.github.com/rveitch/84cea9650092119527bc) with [BEM](http://getbem.com/naming/) (Block__Element--Modifier)
  - [ ] Add mediaquery breakpoint for tablet portrait mode
  - [ ] Refactor NavigationTabs component to React-MD tabs pattern
- - [ ] Implement naming & saving of free-form sessions
- - [ ] Implement chat using Pusher Chatkit with WebSockets
+ - [ ] Feature: Naming & saving of free-form sessions
+ - [ ] Feature: User can add their own exercises / katas (use a markdown editor component)
+ - [ ] Feature: Chat using Pusher Chatkit with WebSockets
  - [ ] Add read/write access toggling for 2nd party
  - [ ] Protect against infinite loops
  - [ ] Experiment with replacing VM.js interpreter with Node.js, inspired by [olydis](https://github.com/olydis/node-in-browser/blob/master/README.md)
