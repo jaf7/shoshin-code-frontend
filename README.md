@@ -35,7 +35,8 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
 
 ## To-do
  - [ ] Refactor custom styling to [SASS 7-1 pattern](https://gist.github.com/rveitch/84cea9650092119527bc) with [BEM](http://getbem.com/naming/) (Block__Element--Modifier)
- - [ ] Refactor NavigationTabs component to React-MD React-Router pattern
+ - [ ] Add mediaquery breakpoint for tablet portrait mode
+ - [ ] Refactor NavigationTabs component to React-MD tabs pattern
  - [ ] Implement naming & saving of free-form sessions
  - [ ] Implement chat using Pusher Chatkit with WebSockets
  - [ ] Add read/write access toggling for 2nd party
