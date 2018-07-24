@@ -34,10 +34,12 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
 * Custom SASS additions using [node-sass-chokidar](https://www.npmjs.com/package/node-sass-chokidar) preprocessor
 
 ## To-do
+ - [ ] Refactor custom styling to [SASS 7-1 pattern](https://gist.github.com/rveitch/84cea9650092119527bc) with [BEM](http://getbem.com/naming/) (Block__Element--Modifier)
  - [ ] Implement chat using Pusher Chatkit with WebSockets
  - [ ] Add read/write access toggling for 2nd party
  - [ ] Protect against infinite loops
  - [ ] Implement naming & saving of free-form sessions
+ - [ ]
  - [ ] Experiment with replacing VM.js interpreter with Node.js, inspired by [olydis](https://github.com/olydis/node-in-browser/blob/master/README.md)
 
  ### Backend
