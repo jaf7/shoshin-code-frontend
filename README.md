@@ -1,5 +1,5 @@
 # Shoshin Code
-A coding practice and mentorship application that integrates coding exercises with an editor and repl, offers real-time session sharing across a network and session saving for any editor/exercise combination. Features ES6 evaluation & error handling, code highlighting, secure user authentication, WebSocket session streaming and exercises from the CodeWars API.
+A coding practice and mentorship application that integrates coding exercises with an editor and repl, offers real-time session sharing across a network and session saving for any editor state / exercise combination. Features ES6 sandboxed evaluation (no `eval`) & error handling, code highlighting, secure user authentication (JWT), WebSocket session streaming using unique URLs and exercises from the CodeWars API.
 
 ## Motivation
 This app is born from a deep appreciation of online coding environments like [Repl.it](https://repl.it). I wanted to use and offer to others a tool that combines the salient features of such environments with real-time session sharing to support mentorship and exercises in the spirit of code Katas. I wanted a clean, elegant experience with crisp interactions that doesn't get in the way and lets the user focus on learning. 
@@ -26,7 +26,7 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
 * [React Router](https://reacttraining.com/react-router/)
 * [Rails](https://rubyonrails.org/) RESTful API with [PostgreSQL](https://www.postgresql.org/) (Rails backend repo [here](https://github.com/jaf7/shoshin-code-backend))
 * [ActionCable](http://guides.rubyonrails.org/action_cable_overview.html) WebSockets with [Redis Pub/Sub](https://redis.io/topics/pubsub)
-* [JWT](https://jwt.io/) / [ruby-jwt](https://github.com/jwt/ruby-jwt/blob/master/README.md) / [Bcrypt](https://github.com/codahale/bcrypt-ruby/blob/master/README.md) hashing
+* [JWT](https://jwt.io/) / [ruby-jwt](https://github.com/jwt/ruby-jwt/blob/master/README.md) / [Bcrypt](https://github.com/codahale/bcrypt-ruby/blob/master/README.md) hashing 
 * [Ace Editor](https://github.com/ajaxorg/ace/blob/master/Readme.md)
 * [React-Ace](https://github.com/securingsincity/react-ace)
 * [VM.js](https://github.com/tarruda/vm.js/) ES6 bytecode compiler and VM
