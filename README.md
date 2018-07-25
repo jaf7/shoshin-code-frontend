@@ -38,10 +38,10 @@ Nothing to install. Shoshin runs in your browser, including the sandboxed JavaSc
  - [ ] Add mediaquery breakpoint for tablet portrait mode
  - [ ] Refactor NavigationTabs component to React-MD tabs pattern
  - [ ] Feature: Naming & saving of free-form sessions
- - [ ] Feature: User can add their own exercises / katas (use a markdown editor component)
+ - [ ] Feature: Users can add their own exercises / katas (using a markdown editor component)
  - [ ] Feature: Chat using Pusher Chatkit with WebSockets
  - [ ] Add read/write access toggling for 2nd party
- - [ ] Protect against infinite loops
+ - [ ] Comprehensively protect against infinite loops
  - [ ] Experiment with replacing VM.js interpreter with Node.js, inspired by [olydis](https://github.com/olydis/node-in-browser/blob/master/README.md)
 
  ### Backend
