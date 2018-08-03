@@ -109,6 +109,10 @@ export const emitEditorContent = content => {
   }
 }
 
+export const clearEmittedContent = () => {
+  return { type: 'CLEAR_EMITTED_CONTENT' }
+}
+
 export const addToEdits = ( newValue, editorId, sessionId ) => dispatch => {
   localStorage.setItem(`${sessionId}`, `${newValue}`)
   // console.log('#### lS in addToEdits ####')

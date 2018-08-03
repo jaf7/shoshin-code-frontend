@@ -32,20 +32,6 @@ class Editor extends Component {
     // this.writeShareUrlToClipboard(this.state.sessionId)
   }
 
-  /* 
-  Should be doing this in constructor
-  TODO: research lifecycle methods in ES6+
-  https://babeljs.io/blog/2015/06/07/react-on-es6-plus
-  */
-  // componentWillMount() {
-  //   const sessionId = this.getSessionId()
-  //   const editorId = uuid()
-  //   this.setState({
-  //     sessionId: sessionId,
-  //     editorId: editorId
-  //   }, this.writeShareUrlToClipboard(this.state.sessionId) )
-  // }
-
   componentDidMount() {
     if ( this.props.loggedIn ) {
       this.props.getSessionContent(this.props.userId, this.props.exerciseId)

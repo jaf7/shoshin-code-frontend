@@ -66,6 +66,10 @@ export function rootReducer( state = defaultState, action ) {
       return {
         ...state, editor: { ...state.editor, emitContent: action.payload.emitContent }
       }
+    case 'CLEAR_EMITTED_CONTENT':
+      return {
+        ...state, editor: { ...state.editor, emitContent: '' }
+      }
     case 'GETTING_SESSION_CONTENT':
       return { ...state,
         user: { ...state.user,

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { clearEmittedContent } from '../actions/actions'
 
 import Vm from 'vm.js'
 import { debugout } from '../utils/debugout'
@@ -22,6 +25,10 @@ const styles = {
       }
 
 class Repl extends Component {
+
+  componentDidMount() {
+    this.props.clearContent()
+  }
 
   handleRun = ( emittedCode ) => {
 
@@ -80,4 +87,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Repl)
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    clearContent: clearEmittedContent
+  }, dispatch)
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Repl )
