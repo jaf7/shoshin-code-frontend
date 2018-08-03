@@ -22,12 +22,6 @@ const styles = {
       }
 
 class Repl extends Component {
-  constructor() {
-    super()
-    this.state = {
-      resolvedValue: ''
-    }
-  }
 
   handleRun = ( emittedCode ) => {
 
@@ -60,21 +54,6 @@ class Repl extends Component {
         return errorMessage
       }
     }
-
-    // if ( emittedCode.includes('console.log') ) {
-    //   const pattern = /\((.*?)\)/;
-    //   const matchedArguments = emittedCode.match( pattern )[0]
-    //   const argumentList = matchedArguments.replace(/^\(*|\)*$/g, '').split(',').map(e => e.trim())
-
-    //   console.log('matchedArguments: ', matchedArguments)
-    //   console.log('argumentList: ', argumentList)
-
-    //   const results = argumentList.map( arg => interpret(arg) )
-    //   // console.log('results: ', results)
-
-    // } else {
-    //   return interpret( emittedCode )
-    // }
 
     return interpret( emittedCode )
   }

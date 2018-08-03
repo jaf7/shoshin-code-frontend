@@ -10,7 +10,7 @@ export const HEADERS = {
 
 
 const getCurrentUser = () => {
-  return getWithToken(`${API_ROOT}/current_user`)
+  return getWithToken(`${API_ROOT}/current_user`) 
 }
 
 const getWithToken = api_url => {
@@ -82,7 +82,7 @@ const updateSessionContent = data => {
   }).then(res => res.json())
 }
 
-// Keep for maybe implementing edits history
+// Keep for possibly implementing edits history
 // const createEdit = data => {
 //   return fetch(`${API_ROOT}/edits`, {
 //     method: 'POST',

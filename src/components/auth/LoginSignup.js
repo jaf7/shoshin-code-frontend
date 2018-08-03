@@ -36,6 +36,8 @@ class LoginSignup extends PureComponent {
     e.preventDefault()
     this.hide()
     const { fields: { username, password } } = this.state
+    console.log(`this.state: ${this.state}`)
+    console.log(`this.props: ${this.props}`)
     this.props.loginUser( username, password, this.props.history ) 
   }
 
@@ -43,7 +45,7 @@ class LoginSignup extends PureComponent {
     const { visible } = this.state 
     const { fields } = this.state
     const actions = []
-    actions.push(<Button flat primary onClick={this.loginOrSignup} href="" >Login</Button>)
+    actions.push(<Button flat primary onClick={this.loginOrSignup} href="" >Login</Button>) 
     actions.push(<Button flat primary onClick={this.loginOrSignup} href="" >Signup</Button>)
 
     return (

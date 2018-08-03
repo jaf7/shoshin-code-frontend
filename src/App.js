@@ -13,7 +13,7 @@ class App extends PureComponent {
     }
     const token = localStorage.getItem('token')
     if (token) {
-      this.props.getUser( this.props.history )
+      this.props.getUser( this.props.history ) 
     }
   }
 

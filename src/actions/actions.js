@@ -12,7 +12,7 @@ export const fetchUser = ( history ) => dispatch => {
   })
 }
 
-export const loginUser = ( username, password, history ) => dispatch => {
+export const loginUser = ( username, password, history ) => dispatch => { 
   adapter.auth.login( {username, password} ).then(userObject => {
     if (userObject.error) {
       dispatch({ type: 'SET_USER_LOGIN_ERROR', userObject })

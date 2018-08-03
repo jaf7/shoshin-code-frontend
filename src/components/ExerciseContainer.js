@@ -34,16 +34,23 @@ class ExerciseContainer extends Component {
               </div>
             </Grid>
             <Grid className="exercise-grid" style={{'paddingTop':'0px'}} >
-              
-              <MediaQuery minWidth={768}>
+
+              <MediaQuery minDeviceWidth={768}>
                 {(matches) => {
                   if (matches) {
-                    console.log('matches: ', matches, '######## MATCHES ########')
-
-                    return this.props.exercise ? <Editor smallDeviceWidth={true} userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor smallDeviceWidth={true} />
+                    // console.log('######## MATCHES ########')
+                    return (
+                      <div style={styles.editorWrapper} className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--8" >
+                        { this.props.exercise ? <Editor userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor/> }
+                      </div>
+                    )
                   } else {
-                    console.log('######## NO MATCH ########')
-                    return this.props.exercise ? <Editor smallDeviceWidth={false} userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor smallDeviceWidth={false} />
+                    // console.log('######## NO MATCH ########')
+                    return (
+                      <div style={styles.editorWrapper} className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12" >
+                        { this.props.exercise ? <Editor userId={this.props.userId} exerciseId={this.props.exercise.id} exercise={this.props.exercise} /> : <Editor/> }
+                      </div>
+                    )
                   }
                 }}
               </MediaQuery>
