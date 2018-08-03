@@ -48,7 +48,6 @@ class Editor extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.sessionContent !== this.props.sessionContent ? true : false
-
   }
 
   componentWillUnmount() {

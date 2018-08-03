@@ -110,6 +110,7 @@ export const emitEditorContent = content => {
 }
 
 export const clearEmittedContent = () => {
+  console.log('clearContent ran')
   return { type: 'CLEAR_EMITTED_CONTENT' }
 }
 

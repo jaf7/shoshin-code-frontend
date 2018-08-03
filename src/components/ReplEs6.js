@@ -25,9 +25,20 @@ const styles = {
       }
 
 class Repl extends Component {
+  constructor() {
+    super()
+    this.state = {
+      output: ''
+    }
+  }
 
-  componentDidMount() {
-    this.props.clearContent()
+  componentWillReceiveProps( nextProps ) {
+    if ( this.props.emittedContent !== nextProps.emittedContent ) {
+      this.props.clearContent()
+      this.setState({
+        output: this.handleRun(this.props.emittedContent)
+      })
+    }
   }
 
   handleRun = ( emittedCode ) => {
@@ -67,13 +78,14 @@ class Repl extends Component {
 
   render() {
 
-    const output = this.handleRun(this.props.emittedContent)
+    // const output = this.handleRun(this.props.emittedContent)
+    const newOutput = this.state.output
 
     return (
 
       <div className="repl-cell md-paper md-paper--1 md-card md-background--card md-cell md-cell--4" style={styles.wrapper} >
         <div style={styles.replDiv}>
-                { '=> ' + output }
+                { '=> ' + newOutput }
         </div>
       </div>
 
